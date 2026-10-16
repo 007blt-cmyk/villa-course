@@ -25,9 +25,9 @@ const IMG={
 };
 const MET={src:'https://images.metmuseum.org/CRDImages/gr/web-large/DP143704.jpg',alt:'חדר מווילה רומית בבוסקוריאלה, שקירותיו מצוירים בציורי קיר צבעוניים',credit:'המוזיאון המטרופוליטן לאמנות, ניו יורק. נחלת הכלל',url:'https://www.metmuseum.org/art/collection/search/247017'};
 const PANO={src:'assets/img/s1-pano.jpg',credit:'Sergej Majboroda, Poly Haven',spots:[
-  {id:'path',yaw:0,pitch:-18,title:'השביל',text:'כאן עוברים מהכניסה אל החלונות. שום רהיט לא עומד בדרך.'},
-  {id:'sight',yaw:90,pitch:0,title:'קו המבט',text:'מכאן העין רצה עד החלון והאור. שום דבר גבוה לא עוצר אותה.'},
-  {id:'focal',yaw:-90,pitch:0,title:'מוקד העניין',text:'הקיר הזה מושך את העין ראשון, והישיבה מסודרת מולו.'}]};
+  {id:'path',yaw:20,pitch:-30,title:'השביל',text:'כאן עוברים מהדלת אל דלתות הזכוכית. שום רהיט לא עומד בדרך.'},
+  {id:'sight',yaw:-8,pitch:2,title:'קו המבט',text:'מהכניסה העין רצה ישר אל דלתות הזכוכית והאור. שום דבר גבוה לא עוצר אותה.'},
+  {id:'focal',yaw:-73,pitch:-4,title:'מוקד העניין',text:'האח הלבנה מושכת את העין ראשונה, והספה מונחת לידה, על השטיח.'}]};
 let audioOK=false,panoOK=false;
 fetch('assets/audio/s1.m4a',{method:'HEAD'}).then(r=>{audioOK=r.ok}).catch(()=>{});
 fetch('assets/img/s1-pano.jpg',{method:'HEAD'}).then(r=>{panoOK=r.ok}).catch(()=>{});
@@ -289,7 +289,7 @@ const screens=[
     div.addEventListener('click',()=>{found[spot.id]=true;ctx.save();div.classList.add('found');sayBox(res,'<b>'+spot.title+'.</b> '+spot.text);upd()})}}
   function start(){
     if(!window.pannellum){box.replaceChildren(h('p',{style:'color:#fff;padding:30px'},'החדר לא נטען. בדקי שהמחשב מחובר לאינטרנט.'));return}
-    viewer=pannellum.viewer(box,{type:'equirectangular',panorama:PANO.src,autoLoad:true,showControls:false,hfov:105,yaw:0,pitch:-5,compass:false,mouseZoom:false,keyboardZoom:false,
+    viewer=pannellum.viewer(box,{type:'equirectangular',panorama:PANO.src,autoLoad:true,showControls:false,hfov:105,yaw:-35,pitch:-5,compass:false,mouseZoom:false,keyboardZoom:false,
       hotSpots:PANO.spots.map(s=>({pitch:s.pitch,yaw:s.yaw,cssClass:'hs-wrap',createTooltipFunc:mk(s)}))});
     viewer.on('error',()=>box.replaceChildren(h('p',{style:'color:#fff;padding:30px'},'החדר לא נטען. נסי לרענן את הדף.')));
   }
