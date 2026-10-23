@@ -178,13 +178,15 @@ footer{font-size:.7rem;color:var(--muted)}
           <!-- coffee table -->
           <ellipse cx="300" cy="338" rx="90" ry="18" fill="#B8B1A4"/><rect x="292" y="338" width="16" height="30" fill="#6C665C"/>
           <!-- floor lamp (task) -->
-          <rect x="226" y="140" width="4" height="164" fill="#3B3329"/><path d="M204 140h48l-10-34h-28z" fill="#E8DFCC"/>
+          <rect x="226" y="140" width="4" height="164" fill="#3B3329"/><path id="shadeL" d="M204 140h48l-10-34h-28z" fill="#E8DFCC"/>
           <!-- pendant -->
-          <rect x="299" y="0" width="2" height="150" fill="#3B3329"/><path d="M276 150h48l-8-20h-32z" fill="#B88A3E"/>
+          <rect x="299" y="0" width="2" height="150" fill="#3B3329"/><path id="shadeP" d="M276 150h48l-8-20h-32z" fill="#B88A3E"/>
           <!-- light layers (tinted by JS) -->
           <g id="L-amb" style="mix-blend-mode:screen"><rect width="640" height="300" fill="url(#lg-amb)" class="tint" opacity="0"/><rect x="0" y="22" width="640" height="4" class="tintsolid" opacity="0"/></g>
           <g id="L-task" style="mix-blend-mode:screen"><ellipse cx="228" cy="230" rx="130" ry="110" fill="url(#lg-task)" class="tint" opacity="0"/><ellipse cx="300" cy="300" rx="130" ry="70" fill="url(#lg-task)" class="tint" opacity="0"/></g>
           <g id="L-acc" style="mix-blend-mode:screen"><path d="M440 0 L400 96 L554 96 L520 0 Z" fill="url(#lg-beam)" class="tint" opacity="0"/><rect x="400" y="96" width="150" height="104" class="tintsolid" opacity="0"/></g>
+          <!-- colour grade: whole room takes the colour of the light -->
+          <rect id="grade" width="640" height="400" fill="#fff" opacity="0" style="mix-blend-mode:multiply"/>
           <!-- darkness -->
           <rect id="dark" width="640" height="400" fill="#05060A" opacity=".8" style="mix-blend-mode:multiply"/>
           <!-- glare marker -->
@@ -314,13 +316,20 @@ setTimeout(()=>{if(R['360'].a==='wait')chip('360','fail','לא נטען בזמן
 /* 5 lighting */
 function k2rgb(k){const t=k/100;let r,g,b;if(t<=66){r=255;g=99.47*Math.log(t)-161.12;b=t<=19?0:138.52*Math.log(t-10)-305.04}else{r=329.7*Math.pow(t-60,-.1332);g=288.12*Math.pow(t-60,-.0755);b=255}
   const c=x=>Math.max(0,Math.min(255,Math.round(x)));return `rgb(${c(r)},${c(g)},${c(b)})`}
-const L={amb:false,task:false,acc:false};
+const L={amb:false,task:false,acc:false};let on0=false;
+function gradeCol(k){const P=[[2200,[255,140,60]],[2700,[255,172,96]],[3500,[255,208,160]],[4500,[255,240,225]],[5500,[215,230,255]],[6500,[165,200,255]]];
+  k=Math.max(2200,Math.min(6500,k));for(let i=1;i<P.length;i++){if(k<=P[i][0]){const a=P[i-1],b=P[i],t=(k-a[0])/(b[0]-a[0]);return 'rgb('+[0,1,2].map(j=>Math.round(a[1][j]+(b[1][j]-a[1][j])*t)).join(',')+')'}}return 'rgb(165,200,255)'}
+function hex2rgb(c){if(c[0]==='#'){const n=parseInt(c.slice(1),16);return [n>>16&255,n>>8&255,n&255]}return c.match(/\d+/g).map(Number)}
+function mixc(a,b,t,d){const A=hex2rgb(a),B=hex2rgb(b),u=t*d;return 'rgb('+[0,1,2].map(j=>Math.round(A[j]+(B[j]-A[j])*u)).join(',')+')'}
 function draw(){const k=+$('#kelvin').value,d=+$('#dim').value/100,col=k2rgb(k);
   document.querySelectorAll('#roomSvg .tint').forEach(e=>e.style.fill='');
   [['amb',.85],['task',.95],['acc',.8]].forEach(([id,base])=>{const g=$('#L-'+id);g.querySelectorAll('.tint,.tintsolid').forEach(e=>{if(e.classList.contains('tintsolid'))e.setAttribute('fill',col);e.setAttribute('opacity',L[id]?(e.classList.contains('tintsolid')?.25*d:base*d):0)});
     g.querySelectorAll('stop').forEach(s=>s.setAttribute('stop-color',col))});
   document.querySelectorAll('#roomSvg radialGradient stop, #roomSvg linearGradient stop').forEach(s=>s.setAttribute('stop-color',col));
-  const lit=(L.amb?.5:0)+(L.task?.28:0)+(L.acc?.12:0);$('#dark').setAttribute('opacity',(0.82-lit*d*.95).toFixed(2));
+  const lit=(L.amb?.5:0)+(L.task?.28:0)+(L.acc?.12:0);$('#dark').setAttribute('opacity',Math.max(0,.9-lit*d*1.02).toFixed(2));
+  const g=gradeCol(k);$('#grade').setAttribute('fill',g);$('#grade').setAttribute('opacity',(on0=Object.values(L).some(Boolean))?.62:.35);
+  $('#shadeL').setAttribute('fill',L.task?mixc('#E8DFCC',g,.35,d):'#8C8576');
+  $('#shadeP').setAttribute('fill',L.amb?mixc('#B88A3E','#FFE9B0',.6,d):'#6B5424');
   $('#glare').setAttribute('opacity',(L.task&&d>.9&&!L.amb)?.55:0);
   $('#kVal').textContent=k+'K';$('#dVal').textContent=Math.round(d*100)+'%';
   const on=Object.values(L).filter(Boolean).length;let v;
