@@ -96,6 +96,7 @@ function visible(){return App.screens.filter(sc=>!(sc.skip&&sc.skip(S)))}
 function ctxFor(sc){const ss=sess(App.session);if(!ss.data[sc.id])ss.data[sc.id]={};
   return {S,name:S.name,data:ss.data[sc.id],all:ss.data,save,done:()=>{ui.next.classList.add('glow')},next:()=>go(1),h,fill,toast,Voice,App,notebook:addNote,ICON}}
 
+function isOpen(n){return !!(window.Salon&&window.Salon._reg&&window.Salon._reg[n])}
 function openSession(n,screens,startIdx){
   App.view='session';App.session=n;App.screens=screens;
   const ss=sess(n);const vis=visible();
@@ -107,7 +108,7 @@ function go(d){
   if(App.view!=='session'){goHome();return}
   const vis=visible();let p=vis.indexOf(App.screens[App.idx])+d;
   if(p<0)return;
-  if(p>=vis.length){goHome();return}
+  if(p>=vis.length){const nx=App.session+1;if(isOpen(nx)&&sess(App.session).done){window.Salon.start(nx)}else goHome();return}
   App.idx=App.screens.indexOf(vis[p]);sess(App.session).screen=p;save();render();
 }
 function render(){
@@ -121,7 +122,7 @@ function render(){
   const r=sc.mount(el,ctx);if(typeof r==='function')App.cleanup=r;
   ui.prev.disabled=p===0;
   ui.next.hidden=!!sc.hideNext;
-  ui.next.firstChild.textContent=p===vis.length-1?'למסך הבית ':'הבא ';
+  ui.next.firstChild.textContent=p===vis.length-1?((isOpen(App.session+1)&&sess(App.session).done)?'למפגש הבא ':'למסך הבית '):'הבא ';
   ui.step.textContent='מסך '+(p+1)+' מתוך '+vis.length;
   const pct=Math.round((p+1)/vis.length*12);
   ui.where.replaceChildren('מפגש '+App.session+' מתוך 12',h('span',{class:'bar','aria-hidden':'true'},...Array.from({length:12},(_,k)=>h('i',{class:k<pct-1?'on':k===pct-1?'now':''}))));
@@ -134,18 +135,20 @@ function goHome(){
   Voice.stop();setListen(false);
   if(App.cleanup){try{App.cleanup()}catch(e){}App.cleanup=null}
   App.view='home';ui.nav.hidden=true;ui.where.replaceChildren();
-  const s1=sess(1);const started=s1.screen>0||s1.done;
+  const reg=SESSIONS.filter(x=>isOpen(x.n));
+  const cur=reg.find(x=>!sess(x.n).done)||null;const last=reg[reg.length-1]||SESSIONS[0];
+  const tgt=cur||last;const st=sess(tgt.n);const started=st.screen>0||st.done;
   const el=h('section',{class:'screen'});
   const left=h('div',{class:'copy'},
     h('span',{class:'kicker'},'הקורס'),
     h('h1',null,S.name?'שלום, '+S.name:'ברוכה הבאה'),
-    h('p',{class:'lede'},s1.done?'מפגש 1 הושלם. המפגש הבא בדרך.':started?'המסע שלך מחכה בדיוק במקום שעצרת.':'שנים־עשר מפגשים בעולם הווילות ובתי היוקרה. נתחיל מהסלון.'),
+    h('p',{class:'lede'},!cur?'מפגש '+last.n+' הושלם. המפגש הבא בדרך.':started?'המסע שלך מחכה בדיוק במקום שעצרת.':tgt.n===1?'שנים־עשר מפגשים בעולם הווילות ובתי היוקרה. נתחיל מהסלון.':'המפגש הבא מחכה לך: '+tgt.t+'.'),
     h('div',{class:'row'},
-      h('button',{class:'cta',type:'button',onclick:()=>window.Salon.start(1),html:(s1.done?'לחזור למפגש 1':started?'המשיכי מהמקום שעצרת':'בואי נתחיל')+ICON.arrowL})),
+      h('button',{class:'cta',type:'button',onclick:()=>window.Salon.start(tgt.n),html:(!cur?'לחזור למפגש '+last.n:started?'המשיכי מהמקום שעצרת':'בואי נתחיל')+ICON.arrowL})),
     h('p',{class:'note',style:'margin-top:22px'},'הכול נשמר אוטומטית בדפדפן הזה. כדאי לשמור גיבוי מדי פעם, דרך התפריט.'));
   const grid=h('div',{class:'sessions'},...SESSIONS.map(s=>{
-    const st=S.sessions[s.n];const open=s.n===1;const done=st&&st.done;
-    return h('button',{type:'button',class:'sess'+(done?' done':open?' open':' soon'),disabled:!open,onclick:open?()=>window.Salon.start(1):null,'aria-label':'מפגש '+s.n+': '+s.t+(open?'':'. בקרוב')},
+    const st=S.sessions[s.n];const open=isOpen(s.n);const done=st&&st.done;
+    return h('button',{type:'button',class:'sess'+(done?' done':open?' open':' soon'),disabled:!open,onclick:open?()=>window.Salon.start(s.n):null,'aria-label':'מפגש '+s.n+': '+s.t+(open?'':'. בקרוב')},
       h('span',{class:'n'},'מפגש '+s.n+(done?' · הושלם':open?'':' · בקרוב')),h('span',{class:'t'},s.t))}));
   el.append(h('div',{class:'home'},
     h('div',null,h('div',{class:'arch-wrap',style:'margin-bottom:18px'},h('div',{class:'arch-back'}),h('div',{class:'arch',style:'height:min(30vh,280px)'},h('img',{src:'assets/img/logo-full.png',alt:'כורסה, מנורה וצמח: הסמל של הסלון',style:'object-fit:contain;padding:18px;background:var(--paper)'}))),left),
