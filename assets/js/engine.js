@@ -69,7 +69,11 @@ function build(){
   ui.next=h('button',{class:'next',type:'button',onclick:()=>go(1)},'הבא',h('span',{'aria-hidden':'true'},'←'));
   ui.step=h('span',{class:'step'});
   ui.nav=h('footer',{class:'nav'},ui.prev,ui.step,ui.next);
-  root.append(ui.top,ui.stage,ui.nav);
+  ui.taskHint=h('span',{class:'tb-hint'},'קראי את ההנחיה לפני שאת פועלת');
+  ui.taskText=h('span',{class:'tb-text'});
+  ui.task=h('section',{class:'taskbar',hidden:true,'aria-label':'ההנחיה למסך'},
+    h('span',{class:'tb-icon','aria-hidden':'true'},'✎'),h('div',{class:'tb-body'},ui.taskHint,ui.taskText));
+  root.append(ui.top,ui.stage,ui.task,ui.nav);
   document.body.append(root);
   const fit=()=>document.documentElement.style.setProperty('--room',Math.max(420,ui.stage.clientHeight-34)+'px');
   if('ResizeObserver' in window)new ResizeObserver(fit).observe(ui.stage);fit();
@@ -84,9 +88,11 @@ function toggleListen(){
   if(!Voice.v)toast('לא נמצא קול עברי במחשב. ההקראה תהיה בקול אחר.');
 }
 function setListen(on){ui.listen.setAttribute('aria-pressed',on);ui.listen.innerHTML=(on?ICON.stop:ICON.speak)+'<span>'+(on?'עצרי':'הקשיבי')+'</span>'}
+function taskOf(sc,ctx){const t=typeof sc.task==='function'?sc.task(ctx):sc.task;return t?fill(t):''}
 function currentSay(){
   if(App.view==='session'){const sc=App.screens[App.idx];const say=typeof sc.say==='function'?sc.say(ctxFor(sc)):sc.say;
-    return fill(say||[sc.title,typeof sc.text==='function'?sc.text(ctxFor(sc)):sc.text].filter(Boolean).join('. '))}
+    const tk=taskOf(sc,ctxFor(sc));
+    return (tk?tk+' ':'')+fill(say||[sc.title,typeof sc.text==='function'?sc.text(ctxFor(sc)):sc.text].filter(Boolean).join('. '))}
   const el=ui.stage.querySelector('.screen');return el?el.innerText.slice(0,900):''
 }
 function fill(s){return String(s||'').replace(/\{name\}/g,S.name||'').replace(/,\s*\./g,'.').replace(/\s+\./g,'.')}
@@ -120,6 +126,8 @@ function render(){
   const el=h('section',{class:'screen'+(sc.wide?' wide':''),'aria-label':sc.title||''});
   ui.stage.replaceChildren(el);ui.stage.scrollTop=0;
   const r=sc.mount(el,ctx);if(typeof r==='function')App.cleanup=r;
+  const tk=taskOf(sc,ctx);ui.task.hidden=!tk;ui.task.classList.remove('pulse');
+  if(tk){ui.taskText.textContent=tk;void ui.task.offsetWidth;ui.task.classList.add('pulse')}
   ui.prev.disabled=p===0;
   ui.next.hidden=!!sc.hideNext;
   ui.next.firstChild.textContent=p===vis.length-1?((isOpen(App.session+1)&&sess(App.session).done)?'למפגש הבא ':'למסך הבית '):'הבא ';
@@ -134,7 +142,7 @@ function render(){
 function goHome(){
   Voice.stop();setListen(false);
   if(App.cleanup){try{App.cleanup()}catch(e){}App.cleanup=null}
-  App.view='home';ui.nav.hidden=true;ui.where.replaceChildren();
+  App.view='home';ui.nav.hidden=true;ui.task.hidden=true;ui.where.replaceChildren();
   const reg=SESSIONS.filter(x=>isOpen(x.n));
   const cur=reg.find(x=>!sess(x.n).done)||null;const last=reg[reg.length-1]||SESSIONS[0];
   const tgt=cur||last;const st=sess(tgt.n);const started=st.screen>0||st.done;
