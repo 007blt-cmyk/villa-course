@@ -138,7 +138,7 @@ const screens=[
  }},
 
 {id:'feel',task:'איפה היית רוצה לשבת עכשיו, עם כוס קפה? לחצי על אחת התמונות.',title:'איך תרגישי בתוכו?',wide:true,
- text:'מעצבים טובים לא שואלים קודם מה להכניס לחדר. הם שואלים איך ירגישו בתוכו. איפה היית רוצה לשבת עכשיו, עם כוס קפה? לחצי על אחת התמונות.',
+ text:'מעצבים טובים לא שואלים קודם מה להכניס לחדר. הם שואלים איך ירגישו בתוכו.',
  mount(el,ctx){
   const opts=[['seat1','ליד החלון'],['seat2','פינה מוארת'],['seat3','מול הבריכה']];
   const res=h('div');
@@ -146,12 +146,12 @@ const screens=[
       ctx.data.pick=k;ctx.save();cards.querySelectorAll('.card').forEach(c=>c.setAttribute('aria-pressed',String(c===e.currentTarget)));
       sayBox(res,'<b>בחירה של מעצבת.</b> שמת לב? בכל אחת מהפינות יש אור, מבט פתוח ומקום לעבור. אלה בדיוק הכללים שנלמד היום.');ctx.done()}},
     photo(k,700,525),h('div',{class:'cap'},l,h('span',{class:'cr'},'צילום: '+IMG[k].by+', Unsplash')))));
-  el.append(head('איך זה מרגיש','איך תרגישי בתוכו?','מעצבים טובים לא שואלים קודם מה להכניס לחדר. הם שואלים איך ירגישו בתוכו. איפה היית רוצה לשבת עכשיו, עם כוס קפה?'),cards,res);
+  el.append(head('איך זה מרגיש','איך תרגישי בתוכו?','מעצבים טובים לא שואלים קודם מה להכניס לחדר. הם שואלים איך ירגישו בתוכו.'),cards,res);
   if(ctx.data.pick)sayBox(res,'<b>בחירה של מעצבת.</b> בכל אחת מהפינות יש אור, מבט פתוח ומקום לעבור.');
  }},
 
 {id:'flow',task:'לחצי וראי את השביל.',title:'כלל 1: זרימה',
- text:'זרימה, ובאנגלית Space Flow, היא הדרך שעוברים בה בחדר: מהכניסה אל הספה, ומהספה אל המרפסת. בסלון של וילה השביל הזה פנוי ורחב, ואין צורך לעקוף רהיט. לחצי וראי את השביל.',
+ text:'זרימה, ובאנגלית Space Flow, היא הדרך שעוברים בה בחדר: מהכניסה אל הספה, ומהספה אל המרפסת. בסלון של וילה השביל הזה פנוי ורחב, ואין צורך לעקוף רהיט.',
  mount(el,ctx){
   const svg=P.staticPlan(P.SOLUTION.window,{showPath:false});const box=h('div',{class:'planbox'},svg);
   const show=()=>{if(svg.querySelector('.pathline'))return;const pl=P.pathLine();pl.style.cssText='stroke-dashoffset:700;transition:stroke-dashoffset 2.4s ease';svg.insertBefore(pl,svg.querySelector('g'));requestAnimationFrame(()=>requestAnimationFrame(()=>pl.style.strokeDashoffset='0'));
@@ -164,7 +164,7 @@ const screens=[
  }},
 
 {id:'width',task:'הזיזי את הכורסה עד שהסרגל יהפוך לירוק.',title:'כמה רחב שביל נוח?',
- text:'כמה רחב שביל נוח? בתקני תכנון מקובלים, מעבר נוח בין רהיטים רחב כ־90 סנטימטרים לפחות. הזיזי את הכורסה עד שהסרגל יהפוך לירוק.',
+ text:'כמה רחב שביל נוח? בתקני תכנון מקובלים, מעבר נוח בין רהיטים רחב כ־90 סנטימטרים לפחות.',
  mount(el,ctx){
   let gap=ctx.data.gap||50;
   const NS='http://www.w3.org/2000/svg';const svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox','0 0 760 300');svg.setAttribute('role','img');
@@ -186,32 +186,32 @@ const screens=[
     const up=()=>{window.removeEventListener('pointermove',mv);window.removeEventListener('pointerup',up)};window.addEventListener('pointermove',mv);window.addEventListener('pointerup',up)}
   const msg=h('div');
   el.append(h('div',{class:'split'},h('div',{class:'planbox'},svg),h('div',{class:'copy'},h('span',{class:'kicker'},'המספר של היום'),h('h2',null,'כמה רחב שביל נוח?'),
-    h('p',{class:'lede'},'בתקני תכנון מקובלים, מעבר נוח בין רהיטים רחב כ־90 ס"מ לפחות. הזיזי את הכורסה עד שהסרגל יהפוך לירוק.'),
+    h('p',{class:'lede'},'בתקני תכנון מקובלים, מעבר נוח בין רהיטים רחב כ־90 ס"מ לפחות.'),
     h('div',{class:'row'},readout,h('button',{class:'btn',type:'button',onclick:()=>{gap=Math.max(40,gap-10);draw()}},'צמצמי'),h('button',{class:'btn solid',type:'button',onclick:()=>{gap=Math.min(140,gap+10);draw()}},'הרחיבי את המעבר')),msg)));
   draw();
  }},
 
 {id:'sight',task:'גררי את הסרגל ופתחי את המבט.',title:'כלל 2: קו מבט',wide:true,
- text:'קו מבט, ובאנגלית Sightlines, הוא מה שהעין רואה כשנכנסים. כשהמבט רץ מהדלת עד הגינה, החדר מרגיש גדול יותר. גררי את הסרגל, ופתחי את המבט.',
+ text:'קו מבט, ובאנגלית Sightlines, הוא מה שהעין רואה כשנכנסים. כשהמבט רץ מהדלת עד הגינה, החדר מרגיש גדול יותר.',
  mount(el,ctx){
   const before=h('div',{style:'position:relative;width:100%;height:100%'},photo('lounge',1200,800),h('div',{style:'position:absolute;inset:0'},bookcase()));
   const res=h('div');
   const cmp=compare(before,photo('lounge',1200,800),{chrome:40,start:ctx.data.cut!=null?ctx.data.cut:20,onMove:v=>{ctx.data.cut=v;ctx.save();if(v>=80&&!ctx.data.ok){ctx.data.ok=true;ctx.save()}if(v>=80){sayBox(res,'<b>המבט נפתח.</b> אותו חדר בדיוק, אבל עכשיו העין רצה עד הגן, והחלל מרגיש כפול.');ctx.done()}}});
   el.append(h('div',{class:'split media'},h('div',null,cmp,h('div',{class:'note',style:'margin-top:6px'},'צילום: ',h('span',{class:'en'},IMG.lounge.by+', Unsplash'),'. המדף מצויר לצורך ההמחשה')),
     h('div',{class:'copy'},h('span',{class:'kicker'},'כלל 2'),h('h2',null,'קו מבט'),
-      h('p',{class:'lede',html:'<span class="term">קו מבט</span> (<span class="en">Sightlines</span>) הוא מה שהעין רואה כשנכנסים. כשהמבט רץ מהדלת עד הגינה, החדר מרגיש גדול יותר. גררי את הסרגל ופתחי את המבט.'}),
+      h('p',{class:'lede',html:'<span class="term">קו מבט</span> (<span class="en">Sightlines</span>) הוא מה שהעין רואה כשנכנסים. כשהמבט רץ מהדלת עד הגינה, החדר מרגיש גדול יותר.'}),
       h('div',{class:'row'},h('button',{class:'btn',type:'button',onclick:()=>cmp.setTo(0)},'הראי לפני'),h('button',{class:'btn solid',type:'button',onclick:()=>cmp.setTo(100)},'הראי אחרי')),res)));
  }},
 
 {id:'focal',task:'לחצי על מוקד העניין בתמונה.',title:'כלל 3: מוקד עניין',wide:true,
- text:'מוקד עניין, ובאנגלית Focal Point, הוא המקום שהעין נחה עליו ראשון: חלון אל הנוף, קיר אבן או יצירת אמנות. הרהיטים מסודרים כך שיפנו אליו. לחצי על מוקד העניין בתמונה.',
+ text:'מוקד עניין, ובאנגלית Focal Point, הוא המקום שהעין נחה עליו ראשון: חלון אל הנוף, קיר אבן או יצירת אמנות. הרהיטים מסודרים כך שיפנו אליו.',
  mount(el,ctx){hotspot(el,ctx,{img:'win',zone:{x:37,y:18,w:19,h:74},kicker:'כלל 3',title:'מוקד עניין',
-   lede:'<span class="term">מוקד עניין</span> (<span class="en">Focal Point</span>) הוא המקום שהעין נחה עליו ראשון: חלון אל הנוף, קיר אבן או יצירת אמנות. הרהיטים מסודרים כך שיפנו אליו. לחצי על מוקד העניין בתמונה.',
+   lede:'<span class="term">מוקד עניין</span> (<span class="en">Focal Point</span>) הוא המקום שהעין נחה עליו ראשון: חלון אל הנוף, קיר אבן או יצירת אמנות. הרהיטים מסודרים כך שיפנו אליו.',
    right:'<b>בדיוק.</b> דלת הזכוכית אל הגן היא מוקד העניין. שימי לב איך שתי הכורסאות מסודרות משני צדיה, כמו מסגרת.',
    hint:'כמעט. חפשי את המקום הבהיר ביותר בתמונה, זה שהעין בורחת אליו.'})}},
 
 {id:'focal2',task:'איפה העין שלך נחה ראשון? לחצי עליו בתמונה.',title:'תרגול: מצאי את המוקד',wide:true,
- text:'ועכשיו בסלון אחר. הפעם המוקד שונה. איפה העין שלך נחה ראשון? לחצי עליו בתמונה.',
+ text:'ועכשיו בסלון אחר. הפעם המוקד שונה.',
  mount(el,ctx){hotspot(el,ctx,{img:'fire',zone:{x:17,y:3,w:31,h:72},kicker:'תרגול',title:'מצאי את המוקד',
    lede:'ועכשיו בסלון אחר. הפעם המוקד שונה. איפה העין שלך נחה ראשון?',
    right:'<b>עין של מעצבת.</b> קיר האבן עם האח הוא מוקד העניין, והספה והשולחן מסודרים מולו.',
@@ -254,7 +254,7 @@ const screens=[
  }},
 
 {id:'materials',task:'מייני את החומרים: לחצי על חומר, ואז על הסל המתאים.',title:'כלל 4: חם לצד קר',wide:true,
- text:'החומרים סביבנו משפיעים על מצב הרוח. שיש, זכוכית ומתכת מרגישים קרירים ונקיים. עץ, קטיפה וצמר מרגישים חמים ועוטפים. סלון יוקרתי משלב את שניהם. מייני את החומרים: לחצי על חומר, ואז על הסל המתאים.',
+ text:'החומרים סביבנו משפיעים על מצב הרוח. שיש, זכוכית ומתכת מרגישים קרירים ונקיים. עץ, קטיפה וצמר מרגישים חמים ועוטפים. סלון יוקרתי משלב את שניהם.',
  mount(el,ctx){
   const M=[['marble','שיש','cold'],['glass','זכוכית','cold',1],['metal','מתכת','cold',1],['wood','עץ','warm'],['velvet','קטיפה','warm',1],['wool','צמר','warm']];
   const placed=ctx.data.placed||(ctx.data.placed={});let pick=null;
@@ -273,13 +273,13 @@ const screens=[
     else sayBox(res,'נכון. המשיכי.')}
   function refresh(){for(const [k,,c] of M){sw[k].classList.toggle('placed',!!placed[k]);sw[k].setAttribute('aria-pressed','false');sw[k].disabled=!!placed[k]}
     for(const c of ['cold','warm'])bins[c].got.replaceChildren(...M.filter(m=>placed[m[0]]===c).map(m=>photo(m[0],120,120)))}
-  el.append(head('כלל 4','חם לצד קר','שיש, זכוכית ומתכת מרגישים קרירים ונקיים. עץ, קטיפה וצמר מרגישים חמים ועוטפים. מייני את החומרים: לחצי על חומר, ואז על הסל המתאים.'),
+  el.append(head('כלל 4','חם לצד קר','שיש, זכוכית ומתכת מרגישים קרירים ונקיים. עץ, קטיפה וצמר מרגישים חמים ועוטפים.'),
     row,h('div',{class:'bins'},bins.cold,bins.warm),res,h('p',{class:'note',style:'margin-top:8px'},'צילומים: Unsplash'));
   refresh();
  }},
 
-{id:'pano',task:'גררי את התמונה עם העכבר, או לחצי על החיצים, כדי להסתובב. מצאי את שלוש הנקודות המהבהבות.',title:'חדר שמסתובב סביבך',wide:true,skip:()=>!panoOK,
- text:'עכשיו את עומדת באמצע סלון. גררי את התמונה עם העכבר, או לחצי על החיצים, כדי להסתובב. מצאי את שלוש הנקודות המהבהבות: השביל, קו המבט ומוקד העניין.',
+{id:'pano',task:'גררי את התמונה עם העכבר, או לחצי על החיצים, כדי להסתובב. מצאי את שלוש הנקודות המהבהבות: השביל, קו המבט ומוקד העניין.',title:'חדר שמסתובב סביבך',wide:true,skip:()=>!panoOK,
+ text:'עכשיו את עומדת באמצע סלון.',
  mount(el,ctx){
   const found=ctx.data.found||(ctx.data.found={});
   const box=h('div',{class:'pano',id:'pano',style:'height:min(calc(var(--room,520px) - 170px),600px)'});const counter=h('span',{class:'counter'});const res=h('div',{class:'pano-wrap'},box);
@@ -295,7 +295,7 @@ const screens=[
   }
   const turn=d=>{if(viewer)viewer.setYaw(viewer.getYaw()+d,800)};
   const next=()=>{const s=PANO.spots.find(s=>!found[s.id])||PANO.spots[0];if(viewer)viewer.lookAt(s.pitch,s.yaw,100,1000)};
-  el.append(h('div',{class:'head',style:'align-items:center'},h('h2',{style:'margin:0'},'חדר שמסתובב סביבך'),h('p',{class:'lede',style:'margin:0;max-width:62ch'},'גררי את התמונה, או לחצי על החיצים. מצאי שלוש נקודות מהבהבות: השביל, קו המבט ומוקד העניין.')),
+  el.append(h('div',{class:'head',style:'align-items:center'},h('h2',{style:'margin:0'},'חדר שמסתובב סביבך')),
     res,h('div',{class:'row',style:'margin-top:10px;justify-content:space-between'},
       h('div',{class:'row'},h('button',{class:'btn',type:'button',onclick:()=>turn(45),'aria-label':'סובבי ימינה'},'→ ימינה'),h('button',{class:'btn',type:'button',onclick:()=>turn(-45),'aria-label':'סובבי שמאלה'},'שמאלה ←'),
         h('button',{class:'btn solid',type:'button',onclick:next},'קחי אותי לנקודה הבאה')),
@@ -316,7 +316,7 @@ const screens=[
  }},
 
 {id:'planner',task:'גררי כל רהיט למקומו, או לחצי עליו והזיזי אותו בחצים.',title:'מתכנן הסלון',wide:true,
- text:'גררי כל רהיט למקומו, או לחצי עליו והזיזי אותו בחצים. הסרגל יראה לך את רוחב השביל. בחרי למעלה לאן תפנה הישיבה: אל החלון או אל האח.',
+ text:'הסרגל יראה לך את רוחב השביל. בחרי למעלה לאן תפנה הישיבה: אל החלון או אל האח.',
  mount(el,ctx){
   const host=h('div');el.append(host);
   P.planner(host,{layout:ctx.data.layout,focal:ctx.data.focal,solved:ctx.data.solved,
@@ -335,7 +335,7 @@ const screens=[
   const saveIt=()=>{if(ctx.data.saved){window.Salon.toast('הסלון כבר שמור במחברת');return}ctx.notebook({kind:'plan',svg:true,title:'הסלון שעיצבתי',layout:after,focal:pl.focal||'window',text:pl.solved?'השביל פתוח, הישיבה פונה אל המוקד, והחם פוגש את הקר.':''});
     ctx.data.saved=true;ctx.save();sayBox(res,'<b>נשמר במחברת שלך.</b> אפשר לראות אותו בכל רגע, דרך התפריט.');ctx.done()};
   el.append(h('div',{class:'split'},cmp,h('div',{class:'copy'},h('span',{class:'kicker'},'לפני ואחרי'),h('h2',null,'זה הסלון שעיצבת'),
-    h('p',{class:'lede'},pl.solved?'השביל פתוח, והישיבה פונה אל המוקד. גררי את הסרגל ותראי את ההבדל.':'גררי את הסרגל ותראי את ההבדל. אפשר תמיד לחזור למתכנן ולשפר.'),
+    h('p',{class:'lede'},pl.solved?'השביל פתוח, והישיבה פונה אל המוקד.':'אפשר תמיד לחזור למתכנן ולשפר.'),
     h('button',{class:'cta',type:'button',onclick:saveIt},'שמרי במחברת'),res)));
  }},
 
@@ -349,7 +349,7 @@ quiz('q4','בדיקה 4 מתוך 4','מה פירוש המילה Focus בלטינ
   'נכון. מוקד העניין הראשון של הבית היה האש.','רמז: חשבי על הלב החם של הבית הרומי.','met'),
 
 {id:'corner',task:'בחרי לאן היא תפנה, כורסה, מנורה וחומר לשולחן הצד. כשתסיימי, לחצי על שמרי במחברת.',title:'משימה יצירתית: פינה משלך',wide:true,
- text:'עכשיו פינה משלך בווילה. בחרי לאן היא תפנה, כורסה, מנורה וחומר לשולחן הצד. כשתסיימי, לחצי על שמרי במחברת.',
+ text:'עכשיו פינה משלך בווילה.',
  mount(el,ctx){
   const c=ctx.data.choice||(ctx.data.choice={focal:'window',chair:'wing',lamp:'read',mat:'marble'});
   const scene=h('div',{class:'scene'});const sent=h('p',{class:'lede',style:'margin:12px 0 0;max-width:none'});const res=h('div');
@@ -358,14 +358,14 @@ quiz('q4','בדיקה 4 מתוך 4','מה פירוש המילה Focus בלטינ
     onclick:e=>{c[key]=k;ctx.save();e.currentTarget.parentNode.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===e.currentTarget)));draw()}},v))));
   const saveIt=()=>{ctx.notebook({kind:'corner',svg:true,title:'פינת הקריאה שלי',choice:Object.assign({},c),text:cornerSentence(c)});ctx.data.saved=true;ctx.save();
     sayBox(res,'<b>נשמר במחברת.</b> '+ctx.name+', זו פינה של מעצבת: מוקד אחד, אור לקריאה, וחם לצד קר.');ctx.done()};
-  el.append(head('משימה יצירתית','פינה משלך בווילה','בחרי לאן היא תפנה, כורסה, מנורה וחומר לשולחן הצד.'),
+  el.append(head('משימה יצירתית','פינה משלך בווילה'),
     h('div',{class:'builder'},h('div',null,scene,sent),h('div',{class:'opts'},grp('focal','מול'),grp('chair','כורסה'),grp('lamp','מנורה'),grp('mat','שולחן צד'),
       h('div',null,h('button',{class:'cta',type:'button',onclick:saveIt},'שמרי במחברת')),res)));
   draw();
  }},
 
 {id:'home-idea',task:'כתבי שינוי קטן אחד שיעשה אותה עוד יותר שלך, או לחצי על דלגי.',title:'רעיון לבית',
- text:'רעיון לבית, וזה רשות. שבי רגע בפינה שהכי נעימה לך בבית. מה העין שלך פוגשת ראשון? זה מוקד העניין של הפינה. האם הדרך אליה פנויה? כתבי שינוי קטן אחד שיעשה אותה עוד יותר שלך.',
+ text:'רעיון לבית, וזה רשות. שבי רגע בפינה שהכי נעימה לך בבית. מה העין שלך פוגשת ראשון? זה מוקד העניין של הפינה. האם הדרך אליה פנויה?',
  mount(el,ctx){
   const ta=h('textarea',{id:'idea',maxlength:600},ctx.data.text||'');const res=h('div');
   const saveIt=()=>{const v=ta.value.trim();if(!v){sayBox(res,'כתבי רעיון קטן אחד, או לחצי על דלגי.',true);return}
@@ -373,7 +373,7 @@ quiz('q4','בדיקה 4 מתוך 4','מה פירוש המילה Focus בלטינ
   const card=h('div',{class:'letter idea',style:'border-top-color:var(--mustard);max-width:980px'},
     h('div',{class:'row',style:'justify-content:space-between'},h('h2',{style:'margin:0'},'רעיון לבית: הפינה האהובה עלייך'),h('span',{class:'kicker'},'רשות · אפשר לדלג')),
     h('ol',null,h('li',null,'שבי רגע בפינה שהכי נעימה לך בבית.'),h('li',null,'מה העין שלך פוגשת ראשון? זה מוקד העניין של הפינה.'),
-      h('li',null,'האם הדרך אל הפינה פנויה, בלי לעקוף דבר?'),h('li',null,'כתבי שינוי קטן אחד שיעשה אותה עוד יותר שלך.')),
+      h('li',null,'האם הדרך אל הפינה פנויה, בלי לעקוף דבר?')),
     h('div',{class:'field',style:'max-width:none'},h('label',{for:'idea'},'השינוי הקטן שלי'),ta),
     h('div',{class:'row',style:'margin-top:12px'},h('button',{class:'btn solid',type:'button',onclick:saveIt},'שמרי במחברת'),h('button',{class:'btn',type:'button',onclick:ctx.next},'דלגי')),res);
   el.append(h('div',{class:'center'},h('div',{style:'width:100%;text-align:right'},card)));
@@ -393,9 +393,9 @@ quiz('q4','בדיקה 4 מתוך 4','מה פירוש המילה Focus בלטינ
  }},
 
 {id:'audio',task:'לחצי והקשיבי.',title:'סקירה קולית',skip:()=>!audioOK,
- text:'רוצה לשמוע את כל המפגש כשיחה קלילה? לחצי והקשיבי.',
+ text:'רוצה לשמוע את כל המפגש כשיחה קלילה?',
  mount(el,ctx){
-  el.append(h('div',{class:'center'},h('div',null,h('span',{class:'kicker'},'סקירה קולית'),h('h2',null,'המפגש כשיחה קלילה'),h('p',{class:'lede'},'רוצה לשמוע את כל המפגש כשיחה קלילה? לחצי והקשיבי.'),
+  el.append(h('div',{class:'center'},h('div',null,h('span',{class:'kicker'},'סקירה קולית'),h('h2',null,'המפגש כשיחה קלילה'),h('p',{class:'lede'},'רוצה לשמוע את כל המפגש כשיחה קלילה?'),
     h('audio',{controls:true,src:'assets/audio/s1.m4a',style:'width:min(640px,90vw)',onplay:ctx.done}))));
  }},
 
