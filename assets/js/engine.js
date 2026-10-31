@@ -182,7 +182,7 @@ function showFeedback(){
   const body=ent.length?h('div',{class:'nb'},...ent.map(([n,f])=>h('div',{class:'item'},
     h('h3',null,'מפגש '+n+' · '+(SESSIONS[n-1]||{}).t),h('div',{class:'d'},fmtDate(f.ts)),
     h('p',{style:'margin:8px 0 0'},'התוכן: '+(f.content||'לא סומן')),h('p',{style:'margin:4px 0 0'},'המראה והתמונות: '+(f.visual||'לא סומן')),
-    h('p',{style:'margin:4px 0 0'},'החוויה בכלל: '+(f.overall||'לא סומן')),f.text?h('p',{style:'margin:8px 0 0;white-space:pre-wrap'},'במילים שלך: '+f.text):null))):h('p',{class:'lede'},'עוד אין משובים. בסוף כל מפגש יש מקום לכתוב.');
+    h('p',{style:'margin:4px 0 0'},'החוויה בכלל: '+(f.overall||'לא סומן')),f.period?h('p',{style:'margin:4px 0 0'},'התקופה שהכי דיברה אלייך: '+f.period):null,f.periodWhy?h('p',{style:'margin:4px 0 0'},'למה: '+f.periodWhy):null,f.text?h('p',{style:'margin:8px 0 0;white-space:pre-wrap'},'במילים שלך: '+f.text):null))):h('p',{class:'lede'},'עוד אין משובים. בסוף כל מפגש יש מקום לכתוב.');
   overlay('המשובים שלי',body);
 }
 
