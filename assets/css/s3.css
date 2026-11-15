@@ -1,0 +1,141 @@
+/* הסלון של מזל · רכיבי מפגש 3. תוספת בלבד, לא משנה את salon.css ואת s2.css */
+
+/* ציור בקוד */
+.s3-draw{position:relative;display:block;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--paper);line-height:0;
+  width:min(100%,calc((var(--room,520px) - 110px) * 1.5));margin-inline:auto;aspect-ratio:3/2}
+.s3-draw svg{width:100%;height:100%;display:block}
+.s3-illus{z-index:3}
+.s3-compare .layer svg{width:100%;height:100%}
+.s3-compare .ai-tag{z-index:3}
+.s3-arrows .btn{min-width:110px;min-height:58px;font:800 30px/1 var(--sans)}
+
+/* דלתות כיס */
+.s3-pocket .pd{transition:transform 2.2s cubic-bezier(.4,0,.2,1)}
+.s3-pocket.open .pd-r{transform:translateX(-212px)}
+.s3-pocket.open .pd-l{transform:translateX(212px)}
+
+/* כרטיסי הסודות */
+.s3-secrets .flip .f{padding:22px;justify-content:center;align-items:center;gap:6px;background:var(--lead)}
+.s3-secrets .flip .f .q{padding:0;font-size:32px;text-align:center}
+.s3-num{font:900 92px/1 var(--serif);color:var(--mustard)}
+.s3-secrets .flip .b .rule{font:800 28px/1.35 var(--serif);color:var(--lead)}
+
+/* תוכנית הפטיו */
+.s3-plan .s3-zone{position:absolute;transform:translate(-50%,-50%);width:15%;aspect-ratio:1;border-radius:50%;border:4px solid #fff;background:rgba(224,166,58,.85);cursor:pointer;animation:pulse 1.8s infinite;padding:0}
+.s3-plan .s3-zone.c{width:17%}
+.s3-plan .s3-zone.on{animation:none;background:var(--lead)}
+.s3-plan.lit .s3-zone.c{background:#8FA587;box-shadow:0 0 0 10px rgba(255,214,107,.55)}
+
+/* סימולטור השמש */
+.s3-simwrap{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:26px;align-items:start}
+.s3-simcol{min-width:0}
+.s3-sim,.s3-house,.s3-facade{width:min(100%,calc((var(--room,520px) - 150px) * 1.6));aspect-ratio:640/380}
+.s3-house,.s3-facade{aspect-ratio:3/2;width:min(100%,calc((var(--room,520px) - 150px) * 1.5))}
+.s3-simsvg .sun{transition:transform 1.4s cubic-bezier(.4,0,.2,1),opacity 1s}
+.s3-simsvg .beam,.s3-simsvg .patch2{transition:d 1.4s cubic-bezier(.4,0,.2,1),opacity .8s}
+.s3-simsvg .dark rect,.s3-simsvg [class^="sh-"]{transition:opacity .8s}
+.s3-simsvg .shut{transition:height .9s ease}
+.s3-simsvg stop{transition:stop-color 1s}
+.s3-side{display:grid;gap:10px;align-content:start}
+.s3-meter{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--paper);border-radius:14px;padding:6px}
+.s3-meter .m{text-align:center;font:800 19px var(--sans);padding:8px 4px;border-radius:10px;color:var(--muted);transition:background .5s,color .5s}
+.s3-meter .m0.on{background:#5D7F96;color:#fff}
+.s3-meter .m1.on{background:var(--sage);color:var(--ink)}
+.s3-meter .m2.on{background:var(--terra);color:#fff}
+.s3-ctrls{display:grid;gap:8px}
+.s3-q{display:grid;grid-template-columns:110px 1fr;gap:8px;align-items:center}
+.s3-q b{font:800 21px var(--sans)}
+.s3-q .chips{gap:6px}
+.s3-q .chips button{font-size:20px;min-height:52px;padding:6px 16px}
+.s3-msg{margin:0;max-width:none}
+.s3-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.s3-tabs button{font:800 20px var(--sans);min-height:50px;padding:6px 18px;border-radius:999px;border:3px solid var(--lead);background:#fff;color:var(--lead);cursor:pointer}
+.s3-tabs button[aria-pressed="true"]{background:var(--lead);color:#fff}
+.s3-tabs button.ok{border-color:var(--sage)}
+.s3-sit{margin:0;font-size:22px;line-height:1.45}
+.s3-sit b{color:var(--lead)}
+.s3-opts{gap:8px}
+.s3-opts button{font-size:21px;min-height:54px;padding:8px 18px}
+.s3-opts button.right{border-color:var(--lead);background:#fff;box-shadow:0 0 0 4px rgba(20,71,74,.25)}
+.s3-win{border-color:var(--mustard)}
+
+/* שני חלונות */
+.s3-rules{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:26px;align-items:start}
+.s3-two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.s3-win-btn{display:grid;gap:8px;justify-items:center;background:var(--paper);border:3px solid var(--rule);border-radius:var(--radius);padding:10px;cursor:pointer;font:inherit;color:var(--ink);animation:pulse 1.8s infinite}
+.s3-win-btn .s3-draw{width:100%;aspect-ratio:260/220;box-shadow:none}
+.s3-win-btn .nm{font:800 23px var(--sans)}
+.s3-win-btn:hover{border-color:var(--lead)}
+.s3-win-btn.on{border-color:var(--lead);background:#fff;animation:none}
+
+/* קומות */
+.s3-floor{position:absolute;left:34.5%;width:58%;border:4px dashed transparent;border-radius:10px;background:transparent;cursor:pointer;padding:6px;display:grid;align-content:start;gap:6px;font:inherit;color:var(--ink);line-height:1.2}
+.s3-floor.up{top:12%;height:36%}
+.s3-floor.down{top:51%;height:34%}
+.s3-house.picking .s3-floor{border-color:var(--mustard);background:rgba(224,166,58,.12);animation:pulse 1.8s infinite}
+.s3-floor:hover{border-color:var(--lead)}
+.fl-nm{font:800 19px var(--sans);color:var(--lead);background:rgba(255,255,255,.9);border-radius:999px;padding:2px 12px;justify-self:start}
+.fl-in{display:flex;flex-wrap:wrap;gap:5px}
+.s3-chip{font:700 17px var(--sans);background:var(--lead);color:#fff;border-radius:999px;padding:3px 10px;animation:enter .35s ease both}
+.s3-rooms{gap:8px}
+.s3-rooms button{font-size:20px;min-height:52px;padding:6px 16px}
+.s3-rooms button.placed{background:var(--paper);opacity:.75}
+.s3-rooms .tagf{font-size:16px;color:var(--lead)}
+.s3-term{margin:0;font-size:21px;line-height:1.45;background:var(--paper);border-radius:14px;padding:8px 14px}
+.s3-term b{color:var(--lead)}
+
+/* החזית */
+.s3-sum{font:700 22px/1.45 var(--sans);color:var(--lead);background:var(--paper);border-radius:14px;padding:8px 14px;margin:10px 0 0}
+.s3-nb{max-width:420px;margin-top:10px;border-radius:10px;overflow:hidden;line-height:0}
+.s3-nb svg{width:100%;height:auto;display:block}
+
+/* בדיקות */
+.s3-small{font-size:21px;margin:0 0 4px}
+
+/* סיכום */
+.s3-flips .flip .f .thumb{display:block;width:100%;aspect-ratio:3/2;border-radius:0;box-shadow:none;position:relative;overflow:hidden;background:#fff}
+.s3-flips .flip .f .thumb.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.s3-flips .flip .f .thumb svg{width:100%;height:100%}
+
+@media (max-width:900px){.s3-simwrap,.s3-rules{grid-template-columns:1fr}}
+
+/* התאמה לגובה מסך 1366 */
+.s3-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:26px;align-items:start}
+.s3-row .s2-pic{width:min(100%,calc((var(--room,520px) - 200px) * 1.5))}
+.split.media.s3-qsplit{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:30px}
+.s3-qsplit .s3-draw,.s3-qsplit .s2-pic{width:min(100%,calc((var(--room,520px) - 150px) * 1.5))}
+.s3-simwrap{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px}
+.s3-q{grid-template-columns:92px 1fr;gap:6px}
+.s3-q b{font-size:20px;line-height:1.2}
+.s3-q .chips button{font-size:19px;min-height:48px;padding:5px 13px}
+.s3-sit{font-size:21px}
+.s3-arch-sm{width:min(100%,calc((var(--room,520px) - 150px) * .72))}
+.s3-win-btn .s3-draw{width:min(100%,calc((var(--room,520px) - 250px) * 1.18))}
+.s3-simq{display:grid;grid-template-columns:150px 1fr;gap:6px;align-items:center}
+.s3-simq .chips button{font-size:18px;padding:6px 12px;min-height:46px}
+
+.split.s3-idea{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:40px}
+.split.s3-idea .copy{max-width:none}
+.split.s3-idea .field{max-width:none}
+.s2-fb .rate .q.s3-simq{grid-template-columns:150px 1fr}
+.s3-opts button.right,.s3-opts button.right[aria-pressed="true"]{color:var(--lead)}
+.s3-winline{margin-top:6px;font:900 24px var(--serif);color:var(--terra)}
+.s3-inline{align-items:center}
+.s3-inline .say{margin:0;flex:1 1 220px}
+.s3-qsplit .s2-quiz .opt{min-height:50px;padding:7px 16px;font-size:22px}
+.s3-qsplit h2{margin-bottom:4px}
+.split.s3-idea .lede{font-size:22px;line-height:1.5}
+.s3-thanks{color:var(--ink)}
+.s3-thanks b{color:var(--lead)}
+.s3-qsplit .s2-quiz{grid-template-columns:1fr 1fr;max-width:none}
+.s3-qsplit .s2-quiz .opt{height:100%}
+.s2-fb .s3-thanks{font-size:inherit}
+.s2-end .s3-bridge{grid-template-columns:36% 1fr}
+.s2-end .s3-bridge .ph img{aspect-ratio:1/1}
+.s2-end .s3-bridge p{font-size:19px;line-height:1.38}
+.s2-cap a{color:var(--lead)}
+.s3-compare{width:min(100%,calc((var(--room,520px) - 120px) * 1.5))}
+.s3-floor{left:33.5%;width:60%;padding:4px;gap:4px}
+.fl-nm{font-size:16px;padding:1px 10px}
+.fl-in{gap:4px}
+.s3-chip{font-size:15px;padding:2px 8px}
