@@ -1,0 +1,37 @@
+/* הסלון של מזל · רכיבי מפגש 6. תוספת בלבד, לא משנה את קובצי העיצוב הקודמים */
+.s6-hero{aspect-ratio:640/420}
+.s6-line .node .s2-art{width:120px;height:120px}
+.s6-line .what{font-size:24px}
+.s6-note{text-align:center;margin-top:6px}
+.s6-tri{aspect-ratio:600/330;width:min(100%,calc((var(--room,520px) - 110px) * 1.8))}
+.s6-tri .s2-dot{z-index:2}
+.s6-fr{display:grid;gap:8px;margin-top:6px}
+.s6-fr button{text-align:right;justify-content:flex-start}
+.s6-islwrap{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px}
+.s6-isl{aspect-ratio:600/560;width:min(100%,calc((var(--room,520px) - 110px) * 1.07));touch-action:none}
+.s6-isl .isl{cursor:grab}
+.s6-isl .isl:active{cursor:grabbing}
+.s6-arr .btn{min-width:110px}
+.s6-info .s3-sit{margin:0;font-size:21px;line-height:1.4}
+.s6-info{background:var(--paper);border-radius:14px;padding:8px 14px}
+.s6-pantry.open .pd-r{transform:translateX(-232px)}
+.s6-pantry.open .pd-l{transform:translateX(232px)}
+.s6-pantry{aspect-ratio:640/420}
+.s6-pend{aspect-ratio:640/420}
+.s6-kitwrap{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px}
+.s6-kit{aspect-ratio:640/420}
+.s6-kitwrap .s3-q{grid-template-columns:96px 1fr}
+.s6-sq{aspect-ratio:1;width:min(100%,calc(var(--room,520px) - 150px))}
+.s6-ideaimg{height:100%;line-height:0;background:#EFE6D6}
+.s6-ideaimg svg{width:100%;height:100%}
+.s6-line .node{width:160px;height:160px}
+.s6-line .node .s2-art{width:104px;height:104px}
+.s6-line::before{top:calc(10px + 80px)}
+.s6-line{margin-top:10px}
+.s6-isl{width:min(100%,calc((var(--room,520px) - 90px) * 1.07))}
+.s6-fr{display:flex;justify-content:center;margin-top:10px}
+.s6-fr button{min-width:0;font-size:20px}
+.split.media .s6-kit{width:min(100%,calc((var(--room,520px) - 150px) * 1.52));margin-inline:auto}
+.s6-isl{width:min(100%,calc((var(--room,520px) - 110px) * 1.07))}
+.split.media.s6-eve{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+.s6-sq{width:min(100%,calc(var(--room,520px) - 210px));max-width:360px;margin-inline:auto}
