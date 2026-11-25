@@ -1,0 +1,81 @@
+/* הסלון של מזל · רכיבי מפגש 5. תוספת בלבד, לא משנה את קובצי העיצוב הקודמים */
+
+/* הכחול המצרי */
+.s5-blue{border:0;padding:0;cursor:pointer;font:inherit}
+.s5-blue .eb-wall,.s5-blue .eb-powder,.s5-blue .eb-lump{transition:opacity 1s}
+.s5-blue.g .eb-wall{animation:enter .9s ease both}
+.s5-blue:focus-visible{outline:4px solid var(--mustard);outline-offset:4px}
+
+/* כלל 60-30-10 */
+.s5-rule .flip .f{justify-content:center;align-items:center;background:var(--lead)}
+.s5-big{font:900 92px/1 var(--serif);color:var(--mustard)}
+.s5-rule .flip .f .q{font-size:26px;text-align:center}
+.s5-rule .flip .b .rule{font:700 25px/1.45 var(--sans)}
+
+/* המערבל */
+.s5-mixwrap{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px}
+.s5-room{aspect-ratio:640/420;width:min(100%,calc((var(--room,520px) - 170px) * 1.52))}
+.s5-room svg *{transition:fill .7s}
+.s5-bar{display:flex;margin:8px auto 0;width:min(100%,calc((var(--room,520px) - 170px) * 1.52));border-radius:12px;overflow:hidden;box-shadow:var(--shadow);height:38px}
+.s5-bar span{display:grid;place-items:center;font:800 18px var(--sans);transition:background .7s,flex .5s}
+.s5-ctrls{display:grid;gap:8px}
+.s5-role{display:grid;gap:4px}
+.s5-role b{font:800 20px var(--sans);color:var(--lead)}
+.s5-sw{display:flex;gap:7px;flex-wrap:wrap}
+.s5-sw button{width:44px;height:44px;border-radius:50%;border:3px solid #fff;background:var(--c);box-shadow:0 0 0 2px rgba(26,58,53,.35);cursor:pointer;transition:transform .2s}
+.s5-sw button:hover{transform:scale(1.08)}
+.s5-sw button[aria-pressed="true"]{box-shadow:0 0 0 4px var(--lead);transform:scale(1.12)}
+.s5-sw button:focus-visible{outline:3px solid var(--mustard);outline-offset:3px}
+.s5-fix .s3-tabs{align-items:center}
+.s5-fix .s3-tabs .s4-mine{margin-inline-start:auto;background:var(--terra);color:#fff;border:0;min-height:46px;padding:4px 20px}
+.s5-fix .s3-tabs button{min-height:44px}
+.s5-fix .s3-sit{font-size:20px;line-height:1.35;margin:0}
+.s5-fix .s5-role{grid-template-columns:56px 1fr;align-items:center}
+.s5-fix .s3-side{gap:8px}
+
+/* מיון חומרים */
+.s5-pool .s2-tile .s2-art{border-radius:10px;overflow:hidden}
+
+/* קיר החומרים */
+.s5-wallrow{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:start}
+.s5-wall{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.s5-tile{position:relative;border:3px solid var(--rule);border-radius:14px;padding:0;overflow:hidden;cursor:pointer;background:#fff;aspect-ratio:1;max-height:calc((var(--room,520px) - 150px) / 2)}
+.s5-tile .tx{position:absolute;inset:0;line-height:0}
+.s5-tile .tx svg{width:100%;height:100%}
+.s5-tile .nm{position:absolute;bottom:8px;right:8px;font:800 19px var(--sans);background:rgba(255,255,255,.92);border-radius:999px;padding:2px 12px;color:var(--ink)}
+.s5-tile:hover{border-color:var(--lead)}
+.s5-tile.seen{border-color:var(--sage)}
+.s5-tile.on{border-color:var(--mustard);box-shadow:0 0 0 4px rgba(224,166,58,.45)}
+.s5-tile:not(.seen){animation:pulse 2.2s infinite}
+.s5-wall{justify-items:center}
+.s5-wall .s5-tile{width:100%}
+.s5-zoom{position:relative;display:grid;gap:10px;align-content:start}
+.s5-zoom .lens{width:min(100%,calc(var(--room,520px) - 200px));aspect-ratio:1;border-radius:50%;overflow:hidden;line-height:0;box-shadow:0 0 0 8px #fff,0 0 0 10px var(--rule),var(--shadow);margin-inline:auto}
+.s5-zoom .lens svg{width:100%;height:100%;transform:scale(1.9)}
+.s5-zoom .lens.in svg{animation:s5zoom 1.2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes s5zoom{from{transform:scale(1)}to{transform:scale(1.9)}}
+.s5-zoom .ai-tag{bottom:auto;top:6px}
+.s5-zoom .cap{font-size:22px;line-height:1.45;background:var(--paper);border-radius:14px;padding:8px 14px}
+.s5-zoom .cap b{color:var(--lead)}
+
+/* מט או מבריק */
+.s5-fin{position:relative}
+.s5-fin .lay{position:absolute;inset:0;opacity:0;transition:opacity 1s;line-height:0}
+.s5-fin .lay svg{width:100%;height:100%}
+.s5-fin .lay.on{opacity:1}
+
+/* לוח החומרים */
+.s5-boardwrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.s5-board{aspect-ratio:3/2}
+.s5-boardwrap .s3-q{grid-template-columns:96px 1fr}
+
+/* בדיקות */
+.s5-three{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.s5-sq{aspect-ratio:1;border-radius:14px;overflow:hidden;line-height:0;box-shadow:var(--shadow)}
+.s5-sq svg{width:100%;height:100%}
+
+@media (max-width:900px){.s5-wallrow{grid-template-columns:1fr}}
+.s5-room .s4-res .say{line-height:1.45}
+.s5-lensbox{position:relative;width:min(100%,calc(var(--room,520px) - 200px));margin-inline:auto}
+.s5-lensbox .lens{width:100%}
+.s5-lensbox .ai-tag{top:auto;bottom:-4px;left:50%;transform:translateX(-50%)}
