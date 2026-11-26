@@ -1,0 +1,14 @@
+/* הסלון של מזל · רכיבי מפגש 11. תוספת בלבד, לא משנה את קובצי העיצוב הקודמים */
+.s11-wide{aspect-ratio:640/420}
+.split.media .s11-wide,.s3-qsplit .s11-wide{width:min(100%,calc((var(--room,520px) - 150px) * 1.52));margin-inline:auto}
+.s3-row .s11-wide{width:min(100%,calc((var(--room,520px) - 160px) * 1.52))}
+.s11-range{width:100%;margin:10px 0 4px;accent-color:var(--lead,#14474A);height:34px}
+.s11-items button{font-size:18px!important;min-height:46px!important;padding:4px 11px!important}
+.s11-wrap{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px}
+.s11-wrap .s3-q{grid-template-columns:84px 1fr}
+.s11-wrap .s11-wide{width:100%}
+.s11-lbl{display:block;font:800 20px var(--sans);margin-bottom:6px}
+.s11-wrap .s11-items{margin-bottom:8px}
+.s11-save{align-items:center;gap:14px;margin-top:6px}
+.s11-wrap .s11-wide{width:min(100%,calc((var(--room,520px) - 120px) * 1.52))}
+.s11-save{margin-top:0}.s11-wrap .s11-items button{min-height:44px!important}

@@ -1,0 +1,56 @@
+/* הסלון של מזל · רכיבי מפגש 12. תוספת בלבד, לא משנה את קובצי העיצוב הקודמים */
+.s12-wide{aspect-ratio:640/420}
+.split.media .s12-wide,.s3-qsplit .s12-wide{width:min(100%,calc((var(--room,520px) - 150px) * 1.52));margin-inline:auto}
+.s12-journey{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:6px}
+.s12-jn{display:grid;gap:4px;justify-items:center;text-align:center;padding:10px 6px;min-height:104px;border-radius:16px;border:3px solid var(--lead,#14474A);background:#fff;color:var(--ink,#1A3A35);cursor:pointer;font:700 17px/1.25 var(--sans)}
+.s12-jn .num{font:900 30px/1 var(--serif,'Frank Ruhl Libre',serif);color:var(--terra,#C65A3C)}
+.s12-jn.on{background:var(--paper,#F7F0E4);border-color:var(--mustard,#E0A63A)}
+.s12-words button{font-size:22px}
+.s12-big{font:900 40px/1.2 var(--serif,'Frank Ruhl Libre',serif);color:var(--terra,#C65A3C);margin:16px 0 0;text-align:center}
+.s12-wrap{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px}
+.s12-wrap .s3-q{grid-template-columns:104px 1fr}
+.s12-pal{display:flex;height:calc(var(--room,520px) - 200px);max-height:300px;border-radius:18px;overflow:hidden;border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.s12-pal>div{display:grid;place-items:end center;padding-bottom:12px;font:800 22px var(--sans);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.s12-mats{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;margin-top:8px}
+.s12-mat,.s12-anci{display:grid;gap:6px;justify-items:center;padding:8px;border-radius:16px;border:3px solid #D9CFBF;background:#fff;cursor:pointer;color:var(--ink,#1A3A35);font:700 18px/1.2 var(--sans)}
+.s12-mat[aria-pressed="true"],.s12-anci[aria-pressed="true"]{border-color:var(--lead,#14474A);background:var(--paper,#F7F0E4);box-shadow:0 0 0 3px var(--mustard,#E0A63A)}
+.s12-mat .sw{width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;line-height:0}
+.s12-mat .sw svg,.s12-anci .sw svg{width:100%;height:100%}
+.s12-anc{display:grid;gap:8px;margin-top:4px}
+.s12-ancrow{display:grid;grid-template-columns:92px repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}
+.s12-ancrow b{align-self:center;font:800 20px var(--sans)}
+.s12-anci{grid-template-columns:96px 1fr;align-items:center;justify-items:start;padding:4px 10px;min-height:0}
+.s12-anci .sw{width:96px;height:48px;line-height:0}
+.s12-board{filter:brightness(.6) saturate(.6);transition:filter 2s ease}
+.s12-board.on{filter:none}
+@media (prefers-reduced-motion:reduce){.s12-board{transition:none}}
+.split.media.s12-bsplit{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+.s12-bsplit .s12-wide{width:100%}
+.s12-certwrap{display:grid;justify-items:center}
+.s12-cert{width:min(100%,780px);text-align:center;padding:22px 40px;border:6px double var(--brass,#C9A24B);border-radius:12px;background:#FFFDF7;box-shadow:0 6px 22px rgba(0,0,0,.12)}
+.s12-cert h2{font-size:44px;margin:4px 0}
+.s12-cert p{font-size:22px;margin:6px 0}
+.s12-certname{font:900 46px/1.2 var(--serif,'Frank Ruhl Libre',serif)!important;color:var(--terra,#C65A3C)}
+.s12-certlogo{height:110px;width:auto;margin:0 auto 4px;display:block}
+.s12-print{display:none}
+@media print{
+  body.s12-printing>*:not(.s12-print){display:none!important}
+  body.s12-printing .s12-print{display:block!important}
+  body.s12-printing{background:#fff!important}
+  .s12-print .s12-cert{box-shadow:none;width:100%;margin-top:40px}
+  .s12-pboard svg{width:100%;height:auto}
+}
+.split.media.s12-bsplit{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:24px}
+.s12-more{margin-top:8px;gap:10px}
+.s12-more .btn{min-height:48px;font-size:19px;padding:6px 16px}
+.s12-cert{padding:14px 36px}
+.s12-certlogo{height:78px}
+.s12-cert h2{font-size:36px}
+.s12-certname{font-size:40px!important;margin:2px 0!important}
+.split.media.s12-bsplit .s12-wide{width:min(100%,calc((var(--room,520px) - 90px) * 1.52))}
+.s12-more{margin-top:12px;flex-wrap:wrap}
+.s12-more .cta{min-height:52px;font-size:21px;padding:6px 22px}
+.s12-cert{padding:10px 32px}
+.s12-cert p{font-size:21px;margin:4px 0}
+.s12-certlogo{height:64px}
+.s12-cert{padding:6px 32px}.s12-cert h2{margin:2px 0}
