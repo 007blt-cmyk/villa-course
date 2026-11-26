@@ -72,7 +72,7 @@
 .s2-quiz{display:grid;gap:10px;margin-bottom:6px}
 .s2-poster{margin-inline:auto;height:calc(var(--room,520px) - 90px);max-height:520px;aspect-ratio:300/420;border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
 .s2-poster svg{width:100%;height:100%;display:block}
-.s2-link{display:grid;gap:2px;margin-top:12px;padding:10px 16px;border-radius:12px;border:2px dashed var(--lead);color:var(--lead);font:700 20px var(--sans);text-decoration:none;max-width:560px}
+.s2-link{display:grid;gap:0;margin-top:6px;padding:6px 16px;border-radius:12px;border:2px dashed var(--lead);color:var(--lead);font:700 20px var(--sans);text-decoration:none;max-width:560px}
 .s2-link:hover{background:var(--paper)}
 .s2-link::after{content:"פתיחה באתר המוזיאון ↗";font:600 17px var(--sans);color:var(--muted)}
 
@@ -139,8 +139,8 @@
 .s2-sample{margin:12px 0 0;display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center}
 .s2-sample img{width:120px;border-radius:8px;display:block}
 .s2-sample figcaption{font:600 19px var(--sans);color:var(--muted)}
-.s2-steps{display:grid;gap:10px}
-.s2-step{background:var(--paper);border-radius:14px;padding:10px 14px}
+.s2-steps{display:grid;gap:4px}
+.s2-step{background:var(--paper);border-radius:14px;padding:5px 14px}
 .s2-step.closed{display:block;width:100%;text-align:right;border:2px solid var(--rule);cursor:pointer;font:inherit;color:var(--ink)}
 .s2-step.closed:hover{border-color:var(--lead)}
 .s2-step.closed h3{margin:0}
@@ -207,7 +207,7 @@
 .s2-head>div{flex:none}
 .s2-head .lede{max-width:72ch;font-size:22px;line-height:1.5}
 .s2-row2{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:28px;align-items:start}
-.s2-met.sm{height:calc(var(--room,520px) - 200px);min-height:170px}
+.s2-met.sm{height:calc(var(--room,520px) - 216px);min-height:170px}
 .s2-pool.four{grid-template-columns:repeat(4,minmax(0,1fr))}
 .s2-pool.compact.nine{grid-template-columns:repeat(5,minmax(0,1fr))}
 .s2-pick6.s2-pool{grid-template-columns:repeat(3,minmax(0,1fr))}

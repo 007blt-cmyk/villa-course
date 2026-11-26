@@ -464,8 +464,8 @@ const screens=[
   const bridge=h('aside',{class:'s2-bridge'},h('div',{class:'ph'},pic('bridge','sm',{alt:IMG.bridge.alt}),aiTag()),
       h('div',null,h('span',{class:'kicker'},'מפגש 3'),h('p',null,'במפגש הבא: וילות בישראל. נשחק עם השמש. תבחרי שעה וכיוון, תפתחי ותסגרי תריסים, ותראי איך האור משנה את הסלון.')));
   const side=h('div',{class:'s2-fb'},bridge,
-    h('p',{class:'note',style:'margin:8px 0 0'},'המשוב לא חובה. אפשר להמשיך גם בלעדיו.'),
-    h('div',{class:'row',style:'margin-top:8px'},h('button',{class:'cta',type:'button',onclick:saveIt},'שמרי משוב'),h('button',{class:'btn',type:'button',onclick:()=>window.Salon.goHome()},'למסך הבית')),res);
+    h('p',{class:'note',style:'margin:4px 0 0'},'המשוב לא חובה. אפשר להמשיך גם בלעדיו.'),
+    h('div',{class:'row',style:'margin-top:4px'},h('button',{class:'cta',type:'button',onclick:saveIt},'שמרי משוב'),h('button',{class:'btn',type:'button',onclick:()=>window.Salon.goHome()},'למסך הבית')),res);
   el.append(top,h('div',{class:'s2-end'},fb,side));
   ctx.done();
  }}

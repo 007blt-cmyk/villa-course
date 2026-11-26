@@ -196,7 +196,7 @@ const screens=[
  mount(el,ctx){
   const before=h('div',{style:'position:relative;width:100%;height:100%'},photo('lounge',1200,800),h('div',{style:'position:absolute;inset:0'},bookcase()));
   const res=h('div');
-  const cmp=compare(before,photo('lounge',1200,800),{chrome:40,start:ctx.data.cut!=null?ctx.data.cut:20,onMove:v=>{ctx.data.cut=v;ctx.save();if(v>=80&&!ctx.data.ok){ctx.data.ok=true;ctx.save()}if(v>=80){sayBox(res,'<b>המבט נפתח.</b> אותו חדר בדיוק, אבל עכשיו העין רצה עד הגן, והחלל מרגיש כפול.');ctx.done()}}});
+  const cmp=compare(before,photo('lounge',1200,800),{chrome:46,start:ctx.data.cut!=null?ctx.data.cut:20,onMove:v=>{ctx.data.cut=v;ctx.save();if(v>=80&&!ctx.data.ok){ctx.data.ok=true;ctx.save()}if(v>=80){sayBox(res,'<b>המבט נפתח.</b> אותו חדר בדיוק, אבל עכשיו העין רצה עד הגן, והחלל מרגיש כפול.');ctx.done()}}});
   el.append(h('div',{class:'split media'},h('div',null,cmp,h('div',{class:'note',style:'margin-top:6px'},'צילום: ',h('span',{class:'en'},IMG.lounge.by+', Unsplash'),'. המדף מצויר לצורך ההמחשה')),
     h('div',{class:'copy'},h('span',{class:'kicker'},'כלל 2'),h('h2',null,'קו מבט'),
       h('p',{class:'lede',html:'<span class="term">קו מבט</span> (<span class="en">Sightlines</span>) הוא מה שהעין רואה כשנכנסים. כשהמבט רץ מהדלת עד הגינה, החדר מרגיש גדול יותר.'}),
@@ -274,7 +274,7 @@ const screens=[
   function refresh(){for(const [k,,c] of M){sw[k].classList.toggle('placed',!!placed[k]);sw[k].setAttribute('aria-pressed','false');sw[k].disabled=!!placed[k]}
     for(const c of ['cold','warm'])bins[c].got.replaceChildren(...M.filter(m=>placed[m[0]]===c).map(m=>photo(m[0],120,120)))}
   el.append(head('כלל 4','חם לצד קר','שיש, זכוכית ומתכת מרגישים קרירים ונקיים. עץ, קטיפה וצמר מרגישים חמים ועוטפים.'),
-    row,h('div',{class:'bins'},bins.cold,bins.warm),res,h('p',{class:'note',style:'margin-top:8px'},'צילומים: Unsplash'));
+    row,h('div',{class:'bins'},bins.cold,bins.warm),res,h('p',{class:'note',style:'margin-top:4px'},'צילומים: Unsplash'));
   refresh();
  }},
 
@@ -370,7 +370,7 @@ quiz('q4','בדיקה 4 מתוך 4','מה פירוש המילה Focus בלטינ
   const ta=h('textarea',{id:'idea',maxlength:600},ctx.data.text||'');const res=h('div');
   const saveIt=()=>{const v=ta.value.trim();if(!v){sayBox(res,'כתבי רעיון קטן אחד, או לחצי על דלגי.',true);return}
     ctx.notebook({kind:'idea',title:'רעיון לבית',text:v});ctx.data.text=v;ctx.save();sayBox(res,'<b>נשמר במחברת.</b> רעיון קטן, הבדל גדול.');ctx.done()};
-  const card=h('div',{class:'letter idea',style:'border-top-color:var(--mustard);max-width:980px'},
+  const card=h('div',{class:'letter idea',style:'border-top-color:var(--mustard);max-width:980px;padding-block:15px'},
     h('div',{class:'row',style:'justify-content:space-between'},h('h2',{style:'margin:0'},'רעיון לבית: הפינה האהובה עלייך'),h('span',{class:'kicker'},'רשות · אפשר לדלג')),
     h('ol',null,h('li',null,'שבי רגע בפינה שהכי נעימה לך בבית.'),h('li',null,'מה העין שלך פוגשת ראשון? זה מוקד העניין של הפינה.'),
       h('li',null,'האם הדרך אל הפינה פנויה, בלי לעקוף דבר?')),
@@ -406,13 +406,13 @@ quiz('q4','בדיקה 4 מתוך 4','מה פירוש המילה Focus בלטינ
   const W=['אהבתי מאוד','אהבתי','היה בסדר','פחות'];const res=h('div');
   const q=(key,label)=>h('div',{class:'q'},h('b',null,label),h('div',{class:'chips',role:'group','aria-label':label},...W.map(w=>h('button',{type:'button','aria-pressed':String(f[key]===w),
     onclick:e=>{f[key]=w;e.currentTarget.parentNode.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===e.currentTarget)))}},w))));
-  const ta=h('textarea',{id:'fb',maxlength:1500},f.text||'');
+  const ta=h('textarea',{id:'fb',maxlength:1500,style:'height:62px'},f.text||'');
   const btns=h('div',{class:'row',style:'margin-top:12px'},h('button',{class:'cta',type:'button',onclick:()=>saveIt()},'שמרי משוב'),h('button',{class:'btn',type:'button',onclick:ctx.next},'אותיר לפעם אחרת'));
   const saveIt=()=>{f.text=ta.value.trim();if(!f.content&&!f.visual&&!f.overall&&!f.text){sayBox(res,'אפשר לבחור מילה אחת בכל שורה, או לכתוב משפט.',true);return}
     window.Salon.setFeedback(1,{content:f.content,visual:f.visual,overall:f.overall,text:f.text});btns.hidden=true;sayBox(res,'<b>תודה, '+ctx.name+'.</b> המשוב נשמר, והוא ישפיע על המפגש הבא.');ctx.done()};
   el.append(head('המשוב שלך',ctx.name+', איך היה?','כל מילה שלך עוזרת לבנות את המפגש הבא, כך שיתאים לך עוד יותר. שווה להקדיש לזה דקה.'),
     h('div',{class:'rate'},q('content','התוכן'),q('visual','המראה והתמונות'),q('overall','החוויה בכלל')),
-    h('div',{class:'field',style:'max-width:900px;margin-top:16px'},h('label',{for:'fb'},'מה עוד תרצי לספר? מה אהבת, ומה היית משנה?'),ta),
+    h('div',{class:'field',style:'max-width:900px;margin-top:10px'},h('label',{for:'fb'},'מה עוד תרצי לספר? מה אהבת, ומה היית משנה?'),ta),
     btns,res);
  }},
 
@@ -430,7 +430,7 @@ quiz('q4','בדיקה 4 מתוך 4','מה פירוש המילה Focus בלטינ
 
 /* מסך עם נקודת לחיצה בתמונה */
 function hotspot(el,ctx,o){
-  const img=photo(o.img,1200,800);const box=h('div',{class:'hot',role:'button','aria-label':'תמונה. לחצי על מוקד העניין',style:'--chrome:40px'},img);const res=h('div');
+  const img=photo(o.img,1200,800);const box=h('div',{class:'hot',role:'button','aria-label':'תמונה. לחצי על מוקד העניין',style:'--chrome:46px'},img);const res=h('div');
   const showZone=()=>{box.querySelectorAll('.zone').forEach(z=>z.remove());box.append(h('div',{class:'zone',style:`left:${o.zone.x}%;top:${o.zone.y}%;width:${o.zone.w}%;height:${o.zone.h}%`}))};
   box.addEventListener('click',e=>{const r=box.getBoundingClientRect();const x=(e.clientX-r.left)/r.width*100,y=(e.clientY-r.top)/r.height*100;
     box.querySelectorAll('.ping').forEach(p=>p.remove());
@@ -449,7 +449,7 @@ function quiz(id,kick,q,opts,right,wrong,img){
     const res=h('div');const list=h('div',{class:'quiz'},...opts.map(([t,ok],i)=>{const b=h('button',{type:'button',class:'opt'},h('span',{class:'mk','aria-hidden':'true'},String(i+1)),t);
       b.addEventListener('click',()=>{if(ok){list.querySelectorAll('.opt').forEach(x=>x.classList.remove('wrong'));b.classList.add('right');b.querySelector('.mk').textContent='✓';ctx.data.ok=true;ctx.save();sayBox(res,'<b>'+right.split('.')[0]+'.</b>'+right.slice(right.indexOf('.')+1));ctx.done()}
         else{b.classList.add('wrong');b.querySelector('.mk').textContent='✗';sayBox(res,wrong+' נסי שוב.',true)}});return b}));
-    const pic=img==='art'?h('div',{class:'hot',style:'cursor:default;--chrome:150px'},photo('art',1200,800)):img==='met'?h('div',{class:'hot',style:'cursor:default;--chrome:150px'},h('img',{src:MET.src,alt:MET.alt})):null;
+    const pic=img==='art'?h('div',{class:'hot',style:'cursor:default;--chrome:156px'},photo('art',1200,800)):img==='met'?h('div',{class:'hot',style:'cursor:default;--chrome:156px'},h('img',{src:MET.src,alt:MET.alt})):null;
     el.append(head(kick,q,null));
     el.append(pic?h('div',{class:'split',style:'min-height:auto;align-items:start'},h('div',null,pic,h('div',{class:'note',style:'margin-top:6px'},img==='art'?'צילום: '+IMG.art.by+', Unsplash':MET.credit)),h('div',null,list,res)):h('div',null,list,res));
     if(ctx.data.ok){const b=list.querySelectorAll('.opt')[opts.findIndex(o=>o[1])];b.classList.add('right');b.querySelector('.mk').textContent='✓';sayBox(res,'<b>'+right.split('.')[0]+'.</b>'+right.slice(right.indexOf('.')+1))}
