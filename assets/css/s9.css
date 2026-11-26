@@ -1,0 +1,27 @@
+/* הסלון של מזל · רכיבי מפגש 9. תוספת בלבד, לא משנה את קובצי העיצוב הקודמים */
+.s9-wide{aspect-ratio:640/420}
+.split.media .s9-wide,.s3-qsplit .s9-wide{width:min(100%,calc((var(--room,520px) - 150px) * 1.52));margin-inline:auto}
+.s3-row .s9-wide{width:min(100%,calc((var(--room,520px) - 160px) * 1.52))}
+.s9-heron .s9-door{transform-box:fill-box;transition:transform 2.4s ease}
+.s9-heron .s9-door.l{transform-origin:left center}
+.s9-heron .s9-door.r{transform-origin:right center}
+.s9-heron.open .s9-door{transform:scaleX(.12)}
+.s9-heron .s9-fire{opacity:0;transition:opacity .8s}
+.s9-heron.open .s9-fire{opacity:1}
+.s9-bed .s9-day{opacity:0;transition:opacity 2s}
+.s9-bed.on .s9-day{opacity:1}
+.s9-bed .s9-cl,.s9-bed .s9-cr{transition:transform 2.4s ease}
+.s9-bed.on .s9-cl{transform:translateX(-96px)}
+.s9-bed.on .s9-cr{transform:translateX(96px)}
+.s9-bed .s9-lamp{opacity:0;transition:opacity 1.6s .6s}
+.s9-bed.on .s9-lamp{opacity:1}
+.s9-cur{transition:transform .6s}
+@media (prefers-reduced-motion:reduce){.s9-heron .s9-door,.s9-bed .s9-day,.s9-bed .s9-cl,.s9-bed .s9-cr,.s9-bed .s9-lamp{transition:none}}
+.s9-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.s9-wrap{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px}
+.s9-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.s9-acts button{display:flex;align-items:center;gap:10px;text-align:right;font:700 19px/1.25 var(--sans);min-height:52px;padding:6px 12px;border-radius:14px;border:3px solid var(--lead,#14474A);background:#fff;color:var(--ink,#1A3A35);cursor:pointer}
+.s9-acts button[aria-pressed="true"]{background:var(--lead,#14474A);color:#fff}
+.s9-acts .mk{flex:0 0 26px;height:26px;border-radius:8px;border:2px solid currentColor;display:grid;place-items:center;font-size:18px}
+.s9-run{font-size:22px}
+.split.media.s9-runsplit{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}

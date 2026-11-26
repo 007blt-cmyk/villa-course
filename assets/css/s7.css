@@ -1,0 +1,30 @@
+/* הסלון של מזל · רכיבי מפגש 7. תוספת בלבד, לא משנה את קובצי העיצוב הקודמים */
+.s7-wide{aspect-ratio:640/420}
+.split.media .s7-wide{width:min(100%,calc((var(--room,520px) - 150px) * 1.52));margin-inline:auto}
+.s7-tex{aspect-ratio:600/400}
+.split.media .s7-tex{width:min(100%,calc((var(--room,520px) - 150px) * 1.5));margin-inline:auto}
+.s7-plan{aspect-ratio:600/400}
+.split.media .s7-plan,.s3-qsplit .s7-plan{width:min(100%,calc((var(--room,520px) - 150px) * 1.5));margin-inline:auto}
+.s7-hangwrap{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px}
+.s7-hang{aspect-ratio:600/460;width:min(100%,calc((var(--room,520px) - 110px) * 1.3));touch-action:none;margin-inline:auto}
+.s7-hang .hg{cursor:grab}
+.s7-hangq{aspect-ratio:600/460}
+.s3-qsplit .s7-hangq{width:min(100%,calc((var(--room,520px) - 150px) * 1.3));margin-inline:auto}
+.s7-info .s3-sit{margin:0;font-size:21px;line-height:1.4}
+.s7-now{margin-top:4px!important}
+.s7-sq{aspect-ratio:1;width:auto;height:calc(var(--room,520px) - 150px);max-width:100%}
+.s7-shelfwrap{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:22px}
+.s7-shelf{aspect-ratio:600/420;position:relative;width:min(100%,calc((var(--room,520px) - 110px) * 1.43));margin-inline:auto}
+.s7-slot{position:absolute;background:transparent;border:3px dashed rgba(255,255,255,.75);border-radius:12px;cursor:pointer;z-index:2}
+.s7-slot.full{border-color:transparent}
+.s7-slot:hover,.s7-slot:focus-visible{border-color:var(--mustard,#E0A63A);outline:none}
+.s7-pool{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.s7-pool .s2-tile{min-height:0;padding:6px 4px}
+.s7-pool .s2-art{width:56px;height:64px}
+.s7-pool .nm{font-size:17px;line-height:1.2}
+.split.media.s7-eve{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+.s7-bridge{aspect-ratio:4/3;width:100%}
+.s3-row .s7-wide{width:min(100%,calc((var(--room,520px) - 160px) * 1.52))}
+.s3-row .s7-sq{height:calc(var(--room,520px) - 100px)}
+.s7-hangwrap{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.s7-hang{width:min(100%,calc((var(--room,520px) - 90px) * 1.3))}

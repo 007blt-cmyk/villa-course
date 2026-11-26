@@ -1,0 +1,16 @@
+/* הסלון של מזל · רכיבי מפגש 8. תוספת בלבד, לא משנה את קובצי העיצוב הקודמים */
+.s8-wide{aspect-ratio:640/420}
+.split.media .s8-wide,.s3-qsplit .s8-wide{width:min(100%,calc((var(--room,520px) - 150px) * 1.52));margin-inline:auto}
+.s3-row .s8-wide{width:min(100%,calc((var(--room,520px) - 160px) * 1.52))}
+.s8-sh{animation:s8sh 2.6s ease-in-out infinite;opacity:.25}
+@keyframes s8sh{0%,100%{opacity:.15;transform:translateX(0)}50%{opacity:.95;transform:translateX(10px)}}
+@media (prefers-reduced-motion:reduce){.s8-sh{animation:none;opacity:.7}}
+.s8-word{grid-template-columns:repeat(2,minmax(0,260px));justify-content:center}
+.s8-big{font:900 64px/1.1 var(--serif,'Frank Ruhl Libre',serif);color:var(--mustard,#E0A63A)}
+.s8-pool .s2-art{width:72px;height:82px}
+.s8-nookwrap{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px}
+.s8-nook{aspect-ratio:640/420}
+.s8-nookwrap .s3-q{grid-template-columns:84px 1fr}
+.s8-icon{aspect-ratio:100/114;width:auto;height:calc(var(--room,520px) - 170px);max-width:100%;margin-inline:auto;background:var(--paper,#F7F0E4);border-radius:16px}
+.s8-word .flip .f{display:grid;place-items:center;align-content:center;gap:6px}
+.s8-big{font-size:58px}
