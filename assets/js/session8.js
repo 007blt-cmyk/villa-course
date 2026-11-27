@@ -18,6 +18,7 @@ const aiTag=()=>h('span',{class:'ai-tag'},'הדמיה');
 const illus=()=>h('span',{class:'ai-tag s3-illus'},'המחשה');
 function svg(vb,inner,extra){return '<svg viewBox="'+vb+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet" '+(extra||'')+'>'+inner+'</svg>'}
 function drawBox(html,cls){const b=h('div',{class:'s3-draw'+(cls?' '+cls:''),html});b.append(illus());return b}
+function photo(src,alt,cls,ai){const b=h('div',{class:'s3-draw'+(cls?' '+cls:'')},h('img',{src,alt,decoding:'async',style:'width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit'}));if(ai)b.append(aiTag());return b}
 /* כרטיסים הפוכים */
 function flips(el,ctx,o){
   const seen=ctx.data.seen||(ctx.data.seen={});const n=o.cards.length;
@@ -269,7 +270,7 @@ const screens=[
 {id:'open',title:'הבית והטבע',hideNext:true,
  text:'ברוכה השבה, {name}. פעם הבית היה קופסה סגורה שמגינה מפני החוץ. בווילה של היום הגבול נעלם: קיר זכוכית, עץ זית בחצר, ומים שמשקפים את השמיים. היום תתאימי צמח לכל חלון, ותעצבי פינה ירוקה משלך.',
  mount(el,ctx){
-  const box=drawBox(heroArt(),'s8-wide');
+  const box=photo('assets/img/s8-open.jpg','וילה עם פטיו פנימי: עץ זית מוקף קירות זכוכית, ובריכת מים שמשקפת את הבית בשקיעה.','s8-wide',1);
   el.append(h('div',{class:'split media s2-split'},h('div',{class:'s2-media'},box),
     h('div',{class:'copy'},h('span',{class:'kicker'},'מפגש 8'),h('h1',null,'הבית והטבע'),
       h('p',{class:'lede'},nameFill('ברוכה השבה, {name}. פעם הבית היה קופסה סגורה שמגינה מפני החוץ. בווילה של היום הגבול נעלם: קיר זכוכית, עץ זית בחצר, ומים שמשקפים את השמיים. היום תתאימי צמח לכל חלון, ותעצבי פינה ירוקה משלך.')),
@@ -386,7 +387,7 @@ const screens=[
 /* יחידה 5 */
 {id:'check1',title:'בדיקה 1',task:'בחרי תשובה אחת.',wide:true,
  say:sayOf('מה פירוש המילה ביופיליה?',[['אהבה לחיים ולטבע'],['פחד מהטבע'],['רהיטים מעץ']]),
- mount(el,ctx){const v=drawBox(heroArt(),'s8-wide');
+ mount(el,ctx){const v=photo('assets/img/s8-open.jpg','וילה עם פטיו פנימי: עץ זית מוקף קירות זכוכית, ובריכת מים שמשקפת את הבית בשקיעה.','s8-wide',1);
   return quiz(el,ctx,{kicker:'בדיקה 1',lede:'ארבע שאלות קצרות על מה שראית היום.',q:'מה פירוש המילה ביופיליה?',visual:v,
   opts:[['אהבה לחיים ולטבע',1],['פחד מהטבע',0],['רהיטים מעץ',0]],hint:'ביו פירושו חיים. ומה פירוש פיליה?',right:'<b>נכון.</b> ביו, חיים. פיליה, אהבה.'})}},
 

@@ -143,7 +143,7 @@ function audioScreen(el,ctx,n){
 function linkCard(href,title,sub){return h('a',{class:'s2-link',href,target:'_blank',rel:'noopener'},h('b',null,title),sub?h('span',null,sub):null)}
 
 /* ---------- מדיה ---------- */
-const HERO={src:'assets/img/s3-salon',alt:'סלון וילה פתוח אל הגן: קירות בהירים, עץ, אבן ובד, ופסי אור על הרצפה.'};
+const HERO={src:'assets/img/s5-open',alt:'סלון וילה בגוני שמנת: ספה בטרקוטה, וילונות בירוק מרווה, כורסה בירוק נפט, שטיח ועץ.'};
 const MET_BLUE='https://www.metmuseum.org/art/collection/search/568012';
 let audioOK=false;
 fetch('assets/audio/s5.m4a',{method:'HEAD'}).then(r=>{audioOK=r.ok}).catch(()=>{});

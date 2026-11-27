@@ -18,6 +18,7 @@ const aiTag=()=>h('span',{class:'ai-tag'},'הדמיה');
 const illus=()=>h('span',{class:'ai-tag s3-illus'},'המחשה');
 function svg(vb,inner,extra){return '<svg viewBox="'+vb+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet" '+(extra||'')+'>'+inner+'</svg>'}
 function drawBox(html,cls){const b=h('div',{class:'s3-draw'+(cls?' '+cls:''),html});b.append(illus());return b}
+function photo(src,alt,cls,ai){const b=h('div',{class:'s3-draw'+(cls?' '+cls:'')},h('img',{src,alt,decoding:'async',style:'width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit'}));if(ai)b.append(aiTag());return b}
 /* כרטיסים הפוכים */
 function flips(el,ctx,o){
   const seen=ctx.data.seen||(ctx.data.seen={});const n=o.cards.length;
@@ -220,7 +221,8 @@ function consoleSvg(items){const n=items.length;const gap=n?Math.min(110,420/n):
 const STEPS=[{t:'לפני',st:{},b:'הספה צמודה לקיר, הווילון קצר, אור אחד מהתקרה, והרבה חפצים קטנים.'},
  {t:'צעד 1',st:{float:1,clear:1},b:'צעד 1: הספה זזה פנימה אל השטיח, והשביל התפנה.'},
  {t:'צעד 2',st:{float:1,clear:1,curtain:1,cush:1},b:'צעד 2: וילון מהתקרה עד הרצפה, וכריות בשלושה מרקמים.'},
- {t:'צעד 3',st:{float:1,clear:1,curtain:1,cush:1,mirror:1,lamps:1,art:1},b:'צעד 3: מראה מול החלון, אור חם בשני גבהים, ושתי תמונות בגובה העיניים.'}];
+ {t:'צעד 3',st:{float:1,clear:1,curtain:1,cush:1,mirror:1,lamps:1,art:1},b:'צעד 3: אור חם בשני גבהים, מנורת שולחן ומנורה גבוהה. אפשר להוסיף גם מראה מול החלון.'}];
+const STEP_ALT=['סלון לפני: ספה ליד הקיר, וילון קצר בחלון, אור אחד מהתקרה, והרבה חפצים על השולחן.','אותו סלון אחרי צעד 1: הספה זזה קדימה אל השטיח, והשולחן התפנה.','אותו סלון אחרי צעד 2: וילונות פשתן מהתקרה עד הרצפה, וכריות במרקמים שונים.','אותו סלון אחרי צעד 3: מנורת שולחן ומנורה גבוהה מוסיפות אור חם בשני גבהים.'];
 /* השדרוג שלך */
 const HACKS={float:'להזיז את הספה אל השטיח',clear:'לפנות את המעבר',curtain:'וילון מהתקרה עד הרצפה',cush:'כריות בשלושה מרקמים',mirror:'מראה מול החלון',lamps:'אור חם בשני גבהים',art:'תמונות בגובה העיניים'};
 const HKEYS=Object.keys(HACKS);
@@ -235,7 +237,7 @@ const screens=[
 {id:'open',title:'סודות המעצבים',hideNext:true,
  text:'ברוכה השבה, {name}. הרבה חושבים שבית מעוצב מתחיל בשיפוץ גדול. מעצבות יודעות סוד אחר: כמה שינויים קטנים ומדויקים עושים את רוב ההבדל. היום תשדרגי סלון שלם בשלושה צעדים, בלי לשבור אף קיר.',
  mount(el,ctx){
-  const box=drawBox(roomSvg(STEPS[3].st,'hero'),'s11-wide');
+  const box=photo('assets/img/s11-step4.jpg',STEP_ALT[3],'s11-wide',1);
   el.append(h('div',{class:'split media s2-split'},h('div',{class:'s2-media'},box),
     h('div',{class:'copy'},h('span',{class:'kicker'},'מפגש 11'),h('h1',null,'סודות המעצבים'),
       h('p',{class:'lede'},nameFill('ברוכה השבה, {name}. הרבה חושבים שבית מעוצב מתחיל בשיפוץ גדול. מעצבות יודעות סוד אחר: כמה שינויים קטנים ומדויקים עושים את רוב ההבדל. היום תשדרגי סלון שלם בשלושה צעדים, בלי לשבור אף קיר.')),
@@ -250,7 +252,7 @@ const screens=[
 {id:'mirror-hist',title:'רגע היסטורי: המראה המצרית',task:'לחצי על "הפני אל השמש", ואחר כך על "הבא".',wide:true,
  text:'רגע היסטורי. לפני כשלושת אלפים וחמש מאות שנה, במצרים, מראה לא הייתה מזכוכית. היא הייתה דיסק של נחושת מלוטשת, עם ידית מעוצבת. מראה כזו מוצגת היום במוזיאון המטרופוליטן. וכבר אז היא החזירה את האור.',
  mount(el,ctx){const res=h('div');const box=h('div',{class:'s3-draw s11-wide'});
-  const draw=on=>{box.innerHTML=mirrorSvg(on);box.append(illus())};draw(!!ctx.data.on);
+  const draw=on=>{if(on){box.style.background='';box.innerHTML=mirrorSvg(on);box.append(illus());return}box.innerHTML='';box.style.background='#A4A4A4';box.append(h('img',{src:'assets/img/s11-mirror.jpg',alt:'מראה מצרית עתיקה: דיסק נחושת עגול על ידית מעוצבת, במוזיאון המטרופוליטן.',decoding:'async',style:'width:100%;height:100%;object-fit:contain;display:block'}))};draw(!!ctx.data.on);
   const go=()=>{ctx.data.on=1;ctx.save();draw(true);sayBox(res,'<b>האור חוזר אל החדר.</b> אותו רעיון בדיוק נשתמש בו היום, עם מראה מול חלון.');ctx.done()};
   el.append(h('div',{class:'split media s2-split'},h('div',{class:'s2-media'},box,linkCard('https://www.metmuseum.org/art/collection/search/545128','המראה במוזיאון המטרופוליטן','מראה מסגסוגת נחושת, מצרים, בערך 1491 עד 1473 לפני הספירה')),
    copy('רגע היסטורי','המראה המצרית','רגע היסטורי. לפני כשלושת אלפים וחמש מאות שנה, במצרים, מראה לא הייתה מזכוכית. היא הייתה דיסק של נחושת מלוטשת, עם ידית מעוצבת. מראה כזו מוצגת היום במוזיאון המטרופוליטן. וכבר אז היא החזירה את האור.',
@@ -298,7 +300,7 @@ const screens=[
 {id:'steps',title:'שדרוג בשלושה צעדים',task:'הזיזי את המחוון עד "צעד 3", או לחצי על הכפתורים.',wide:true,
  text:'רגע WOW. אותו סלון, אותם רהיטים, ובלי שיפוץ. הזיזי את המחוון וראי איך כל צעד משנה את החדר.',
  mount(el,ctx){const d=ctx.data;const res=h('div');
-  const box=h('div',{class:'s3-draw s5-fin s11-wide'},...STEPS.map((s,i)=>h('div',{class:'lay'+((d.v||0)===i?' on':''),'data-i':i,html:roomSvg(s.st,'st'+i)})),illus());
+  const box=h('div',{class:'s3-draw s5-fin s11-wide'},...STEPS.map((s,i)=>h('div',{class:'lay'+((d.v||0)===i?' on':''),'data-i':i},h('img',{src:'assets/img/s11-step'+(i+1)+'.jpg',alt:STEP_ALT[i],decoding:'async',style:'width:100%;height:100%;object-fit:cover;display:block'}))),aiTag());
   const r=h('input',{type:'range',min:0,max:3,step:1,value:d.v||0,dir:'rtl','aria-label':'הזיזי בין לפני לבין צעד 3',class:'s11-range'});
   const btns=h('div',{class:'s2-periods',role:'group','aria-label':'הצעדים'},...STEPS.map((s,i)=>h('button',{type:'button','aria-pressed':String((d.v||0)===i),onclick:()=>set(i)},s.t)));
   function set(i){i=+i;d.v=i;if(i===3)d.done=1;ctx.save();r.value=i;box.querySelectorAll('.lay').forEach(l=>l.classList.toggle('on',+l.dataset.i===i));btns.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));sayBox(res,STEPS[i].b);if(d.done)ctx.done()}

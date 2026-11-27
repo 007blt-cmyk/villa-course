@@ -18,6 +18,7 @@ const aiTag=()=>h('span',{class:'ai-tag'},'הדמיה');
 const illus=()=>h('span',{class:'ai-tag s3-illus'},'המחשה');
 function svg(vb,inner,extra){return '<svg viewBox="'+vb+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet" '+(extra||'')+'>'+inner+'</svg>'}
 function drawBox(html,cls){const b=h('div',{class:'s3-draw'+(cls?' '+cls:''),html});b.append(illus());return b}
+function photo(src,alt,cls,ai){const b=h('div',{class:'s3-draw'+(cls?' '+cls:'')},h('img',{src,alt,decoding:'async',style:'width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit'}));if(ai)b.append(aiTag());return b}
 /* כרטיסים הפוכים */
 function flips(el,ctx,o){
   const seen=ctx.data.seen||(ctx.data.seen={});const n=o.cards.length;
@@ -287,7 +288,7 @@ const screens=[
 {id:'open',title:'הלבשת הבית ואמנות',hideNext:true,
  text:'ברוכה השבה, {name}. בית יכול להיות מושלם באדריכלות, ועדיין להרגיש כמו אולם תצוגה. מה שהופך אותו לבית חי הוא השכבה האחרונה: הטקסטיל, השטיח, האמנות והחפצים שמספרים סיפור. היום תתלי תמונה בגובה הנכון, ותסדרי מדף בעצמך.',
  mount(el,ctx){
-  const box=drawBox(heroArt(),'s7-wide');
+  const box=photo('assets/img/s7-open.jpg','סלון מולבש: וילונות פשתן ארוכים, שטיח, כריות במרקמים שונים, קיר גלריה ומדף מסודר.','s7-wide',1);
   el.append(h('div',{class:'split media s2-split'},h('div',{class:'s2-media'},box),
     h('div',{class:'copy'},h('span',{class:'kicker'},'מפגש 7'),h('h1',null,'הלבשת הבית ואמנות'),
       h('p',{class:'lede'},nameFill('ברוכה השבה, {name}. בית יכול להיות מושלם באדריכלות, ועדיין להרגיש כמו אולם תצוגה. מה שהופך אותו לבית חי הוא השכבה האחרונה: הטקסטיל, השטיח, האמנות והחפצים שמספרים סיפור. היום תתלי תמונה בגובה הנכון, ותסדרי מדף בעצמך.')),

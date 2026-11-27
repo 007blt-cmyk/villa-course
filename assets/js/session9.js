@@ -18,6 +18,7 @@ const aiTag=()=>h('span',{class:'ai-tag'},'הדמיה');
 const illus=()=>h('span',{class:'ai-tag s3-illus'},'המחשה');
 function svg(vb,inner,extra){return '<svg viewBox="'+vb+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet" '+(extra||'')+'>'+inner+'</svg>'}
 function drawBox(html,cls){const b=h('div',{class:'s3-draw'+(cls?' '+cls:''),html});b.append(illus());return b}
+function photo(src,alt,cls,ai){const b=h('div',{class:'s3-draw'+(cls?' '+cls:'')},h('img',{src,alt,decoding:'async',style:'width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit'}));if(ai)b.append(aiTag());return b}
 /* כרטיסים הפוכים */
 function flips(el,ctx,o){
   const seen=ctx.data.seen||(ctx.data.seen={});const n=o.cards.length;
@@ -258,7 +259,7 @@ const screens=[
 {id:'open',title:'הבית החכם',hideNext:true,
  text:'ברוכה השבה, {name}. פעם בית חכם נשמע כמו מסכים, שלטים וכפתורים מסובכים. בווילה של היום זה הפוך: הטכנולוגיה נעלמת, והבית פשוט עושה את מה שצריך. היום תבני בעצמך תרחיש "לילה טוב", ותפעילי אותו בלחיצה אחת.',
  mount(el,ctx){
-  const box=drawBox(houseSvg({garden:1,path:1},'hero'),'s9-wide');
+  const box=photo('assets/img/s9-open.jpg','סלון וילה בערב: אור נסתר בתקרה, תמונה על הקיר, וילונות חצי סגורים ופס אור נמוך לאורך הרצפה.','s9-wide',1);
   el.append(h('div',{class:'split media s2-split'},h('div',{class:'s2-media'},box),
     h('div',{class:'copy'},h('span',{class:'kicker'},'מפגש 9'),h('h1',null,'הבית החכם'),
       h('p',{class:'lede'},nameFill('ברוכה השבה, {name}. פעם בית חכם נשמע כמו מסכים, שלטים וכפתורים מסובכים. בווילה של היום זה הפוך: הטכנולוגיה נעלמת, והבית פשוט עושה את מה שצריך. היום תבני בעצמך תרחיש "לילה טוב", ותפעילי אותו בלחיצה אחת.')),

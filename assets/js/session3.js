@@ -16,6 +16,7 @@ let audioOK=false;
 fetch('assets/audio/s3.m4a',{method:'HEAD'}).then(r=>{audioOK=r.ok}).catch(()=>{});
 
 function pic(key,size,extra){const m=IMG[key];return h('img',Object.assign({src:m.src+(size==='sm'?'-sm':'')+'.jpg',alt:m.alt,decoding:'async'},extra||{}))}
+function photo(src,alt,cls,ai){const b=h('div',{class:'s3-draw'+(cls?' '+cls:'')},h('img',{src,alt,decoding:'async',style:'width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit'}));if(ai)b.append(aiTag());return b}
 const aiTag=()=>h('span',{class:'ai-tag'},'הדמיה');
 const illus=()=>h('span',{class:'ai-tag s3-illus'},'המחשה');
 
@@ -331,7 +332,7 @@ const screens=[
     b.addEventListener('click',()=>{ctx.data.ans=i;ctx.save();show()});return b}));
   function show(){const i=ctx.data.ans;if(i==null)return;list.querySelectorAll('.opt').forEach((b,j)=>{b.classList.toggle('right',OPT[j][1]===1);b.querySelector('.mk').textContent=OPT[j][1]?'✓':String(j+1)});
     sayBox(res,(OPT[i][1]?'':'<b>כמעט. הנה הסיפור:</b> ')+STORY);ctx.done()}
-  const box=h('div',{class:'s3-draw',html:jlmSvg()});box.append(illus());
+  const box=photo('assets/img/s3-jlm.jpg','רחוב בירושלים: בתים מאבן בהירה וחמה, קשתות, מרפסות ועציצים, באור אחר הצהריים.','',1);
   el.append(h('div',{class:'split media s2-split s3-qsplit'},h('div',{class:'s2-media'},box),
     h('div',{class:'copy'},h('span',{class:'kicker'},'אבן ירושלמית'),h('h2',null,'למה כמעט כל הבניינים בירושלים באותו גוון בהיר?'),list,res)));
   show();
@@ -548,7 +549,7 @@ const screens=[
 
 {id:'check4',title:'בדיקה 4',task:'בחרי את התשובה הנכונה.',wide:true,
  say:sayOf('מה מיוחד במראה של ירושלים?',[['כל הבניינים מחופים באבן'],['כל הבניינים מטויחים בלבן'],['כל הבניינים מזכוכית'],['כל הבניינים מעץ']]),
- mount(el,ctx){const v=h('div',{class:'s3-draw',html:jlmSvg()});v.append(illus());
+ mount(el,ctx){const v=photo('assets/img/s3-jlm.jpg','רחוב בירושלים: בתים מאבן בהירה וחמה, קשתות, מרפסות ועציצים, באור אחר הצהריים.','',1);
   return quiz(el,ctx,{kicker:'בדיקה 4',q:'מה מיוחד במראה של ירושלים?',visual:v,
   opts:[['כל הבניינים מחופים באבן',1],['כל הבניינים מטויחים בלבן',0],['כל הבניינים מזכוכית',0],['כל הבניינים מעץ',0]],
   hint:'חשבי על החוק מהתקופה שבה הבריטים שלטו בעיר.',right:'<b>נכון.</b> החוק בתוקף עד היום, ולכן העיר כולה בגוון אחד, בהיר וחם.'})}},
